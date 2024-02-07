@@ -1,0 +1,53 @@
+:root {
+	--main-color: #2A2A36;
+	--accent-color: #C59368;
+	--grey-color: #ededed;
+	--orange-color: #E84B37;
+}
+
+
+* {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	outline: none;
+	font-family: 'Golos Text', sans-serif;
+	box-sizing: border-box;
+}
+
+html {
+	-ms-text-size-adjust: 100%;
+	-webkit-text-size-adjust: 100%;
+}
+
+body {
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	color: var(--main-color);
+}
+
+a,
+span,
+p,
+b,
+h1,
+h2,
+h3,
+h4,
+h5 {
+	color: var(--main-color);
+}
+
+h1 {
+	font-size: 48px;
+}
+
+h2 {
+	font-weight: 600;
+	font-size: 28px;
+	line-height: 30px;
+}
+
+a {
+	text-decoration: none;
+}
