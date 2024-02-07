@@ -1,7 +1,7 @@
 import { FC, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 import { Home } from "./pages/Home/Home";
-import MainLayout from "./layouts/MainLayout";
+import MainLayout from "./components/loyaut/MainLayout.tsx";
 
 const App: FC = () => {
   return (

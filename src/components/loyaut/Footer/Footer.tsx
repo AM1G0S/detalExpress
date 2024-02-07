@@ -1,6 +1,6 @@
 import {FC, memo} from 'react';
 
-import {Wrapper} from './styled';
+import {Wrapper} from './styled.ts';
 
 interface HeaderProps {
 

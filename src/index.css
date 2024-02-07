@@ -2,7 +2,9 @@
 	--main-color: #2A2A36;
 	--accent-color: #C59368;
 	--grey-color: #ededed;
+	--green-color: #3BB698;
 	--orange-color: #E84B37;
+	--light-color: #fff;
 }
 
 
@@ -24,6 +26,10 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
 	color: var(--main-color);
+}
+
+button {
+	border: none;
 }
 
 a,
@@ -50,4 +56,18 @@ h2 {
 
 a {
 	text-decoration: none;
+}
+
+.container {
+	width: 100%;
+	flex-direction: column;
+	max-width: 1240px;
+	padding: 0 20px;
+	margin: 0 auto;
+	position: relative;
+	z-index: 2;
+}
+
+.content {
+	padding-top: 84px;
 }

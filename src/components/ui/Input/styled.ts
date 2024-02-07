@@ -1,0 +1,24 @@
+import styled from "styled-components";
+
+export const StyledInput = styled.input`
+	width: 100%;
+  height: 80px;
+  align-items: center;
+  padding: 0 40px;
+  font-size: 20px;
+  border-radius: 12px;background: rgba(255,255,255,.2);
+  border: 1px solid #e3e3e3;
+  font-weight: 400;
+  outline: none;
+  color: #2A2A36;
+  transition: all 0.3s;
+	
+	&:focus {
+    box-shadow: 0 0 1px 5px rgba(0,0,0,.1);
+		
+		&::placeholder {
+			opacity: 0;
+			transition: all 0.3s;
+		}
+	}
+`;
