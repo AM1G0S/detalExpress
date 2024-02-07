@@ -21,8 +21,12 @@ export const Button = styled.button<ButtonProps>`
   font-size: 16px;
   cursor: pointer;
 
-  ${({ isActive }) => isActive && css`
+  ${({isActive}) => isActive && css`
     color: var(--light-color);
     background: var(--accent-color); // Измените на нужный цвет для активного состояния
   `}
+  
+	@media(max-width: 480px) {
+		font-size: 14px;
+	}
 `;

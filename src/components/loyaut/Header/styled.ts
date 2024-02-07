@@ -1,11 +1,7 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.header`
-  display: flex;
-  align-items: center;
-	justify-content: space-between;
   width: 100%;
-  height: 84px;
   position: fixed;
   top: 0;
   left: 0;
@@ -15,13 +11,28 @@ export const Wrapper = styled.header`
   background: #fafafa;
 `;
 
+export const Inner = styled.nav`
+  max-width: 1240px;
+  height: 84px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+	margin: 0 auto;
+`
+
 export const Logo = styled.span`
 	font-weight: 700;
 	font-size: 26px;
+	
+	@media(max-width: 480px) {
+		font-size: 20px;
+	}
 `;
 
 export const Menu = styled.div`
-
+	@media (max-width: 991px) {
+    display: none;
+	}
 `;
 
 export const MenuList = styled.ul`
@@ -47,6 +58,11 @@ export const Profile = styled.div`
     &:not(:last-child) {
       margin-right: 15px;
       padding-right: 15px;
+	    
+	    @media(max-width: 480px) {
+        margin-right: 8px;
+        padding-right: 8px;
+	    }
     }
 
     &:not(:last-child):after {

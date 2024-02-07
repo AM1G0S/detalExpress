@@ -21,4 +21,11 @@ export const StyledInput = styled.input`
 			transition: all 0.3s;
 		}
 	}
+	
+	@media (max-width: 660px) {
+    height: 52px;
+    font-size: 14px;
+    border-radius: 5px;
+		padding: 0 20px;
+	}
 `;
