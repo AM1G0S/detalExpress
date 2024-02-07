@@ -12,9 +12,11 @@ import {
 import storage from 'redux-persist/lib/storage'
 
 import application from './slices/applicationSlice'
+import pagination from './slices/paginationSlice'
 
 const rootReducer = combineReducers({
 	application,
+	pagination
 })
 
 const persistConfig = {

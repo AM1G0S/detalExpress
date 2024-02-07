@@ -14,7 +14,6 @@ export const applicationSlice = createSlice({
 	reducers: {
 		setMainInput: (state, action: PayloadAction<applicationState>) => {
 			state.mainInput = action.payload.mainInput;
-			console.log(state.mainInput)
 		},
 	},
 });
