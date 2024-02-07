@@ -1,31 +1,49 @@
-import {FC, memo, useState} from "react";
+import {ChangeEvent, FC, memo, useEffect, useState} from "react";
+import {useDispatch} from "react-redux";
+import {AppDispatch} from "../../../redux/store.ts";
 
-import {Input} from "../Input/Input.tsx";
+import {setMainInput} from "../../../redux/slices/applicationSlice";
+
+import {Button} from "../Button/Button.tsx";
+import {Input} from "../Input/Input";
 import {TabButton} from "../TabButton/TabButton";
+import {Link} from "react-router-dom";
 
-import {Form, InputTabs, SubmitButton} from "./styled.ts";
+import cls from "./FormCheck.module.scss";
 
-interface HeaderProps {
+interface FormCheckProps {
 }
 
-const tabs: string[] = ['VIN', 'Марка', 'ГОС-номер'];
+const tabs: string[] = ['VIN', 'Марка авто', 'ГОС-номер'];
 const inputPlaceholders: string[] = [
 	'Укажите VIN-номер',
 	'Укажите марку машины',
 	'Укажите ГОС-номер'
 ];
 
-export const FormCheck: FC = memo((props: HeaderProps) => {
+export const FormCheck: FC = memo((props: FormCheckProps) => {
 	const {} = props;
+	const dispatch = useDispatch<AppDispatch>();
 	const [activeTab, setActiveTab] = useState<number | null>(0);
+	const [inputValue, setInputValue] = useState<string>('');
+	
+	useEffect(() => {
+		dispatch(
+			setMainInput({mainInput: inputValue})
+		);
+	}, [inputValue, dispatch]);
 	
 	const handleTabClick = (index: number) => {
 		setActiveTab(index);
 	};
 	
+	const onChangeInput = (event: ChangeEvent<HTMLInputElement>) => {
+		setInputValue(event.target.value)
+	}
+	
 	return (
-		<Form>
-			<InputTabs>
+		<form className={cls.form}>
+			<div className={cls.inputTabs}>
 				{tabs.map((tab, index) => (
 					<TabButton
 						key={index}
@@ -35,18 +53,22 @@ export const FormCheck: FC = memo((props: HeaderProps) => {
 						{tab}
 					</TabButton>
 				))}
-			</InputTabs>
+			</div>
 			<div>
 				<Input
 					type="text"
+					value={inputValue}
 					placeholder={inputPlaceholders[activeTab || 0]}
+					onChange={onChangeInput}
 				/>
 			</div>
 			<div>
-				<SubmitButton type={'button'}>
-					Отправить запрос
-				</SubmitButton>
+				<Link className={cls.link} to={'/application'}>
+					<Button disabled={!inputValue}>
+						{inputValue ? 'Отправить заявку' : 'Введите данные'}
+					</Button>
+				</Link>
 			</div>
-		</Form>
+		</form>
 	);
 });

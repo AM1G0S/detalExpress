@@ -1,0 +1,17 @@
+.form {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.inputTabs {
+	display: flex;
+	align-items: center;
+	gap: 15px;
+}
+
+.link {
+	display: block;
+	width: fit-content;
+	margin: 0 auto;
+}

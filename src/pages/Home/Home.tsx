@@ -1,6 +1,6 @@
 import { FC, memo } from "react";
 import { FormCheck } from "../../components";
-import {FormWrapper, Inner, MainImg, Title} from "./styled";
+import cls from "./Home.module.scss";
 
 import mainImgSrc from "../../assets/img/main-image.png";
 
@@ -10,14 +10,14 @@ export const Home: FC = memo((props: HomeProps) => {
   const {} = props;
 
   return (
-    <FormWrapper>
-      <Inner>
-        <Title>Нужны автозапчасти?</Title>
+    <div className={cls.formWrapper}>
+      <div className={cls.inner}>
+        <h1 className={cls.title}>Нужны автозапчасти?</h1>
         <FormCheck></FormCheck>
-      </Inner>
-      <Inner>
-        <MainImg src={mainImgSrc} alt={""}/>
-      </Inner>
-    </FormWrapper>
+      </div>
+      <div className={cls.inner}>
+        <img className={cls.mainImg} src={mainImgSrc} alt={""}/>
+      </div>
+    </div>
   );
 });

@@ -1,6 +1,6 @@
 import {ButtonHTMLAttributes, FC, memo} from "react";
 
-import {Button} from "./styled.ts";
+import cls from './TabButton.module.scss'
 
 interface ButtonProps {
 	children: string;
@@ -13,12 +13,12 @@ export const TabButton: FC<ButtonProps> = memo((props) => {
 	const {children, type, isActive, onClick} = props;
 	
 	return (
-		<Button
+		<button
+			className={cls.button + ' ' + (isActive ? cls.active : '')}
 			type={type}
-			isActive={isActive}
 			onClick={onClick}
 		>
 			{children}
-		</Button>
+		</button>
 	);
 });

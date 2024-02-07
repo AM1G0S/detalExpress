@@ -1,7 +1,7 @@
 import {FC, memo} from "react";
 import {Link} from "react-router-dom";
 
-import {Logo, Wrapper, Menu, MenuList, MenuItem, Profile, BurgerMenu, Inner} from "./styled.ts";
+import cls from "./Header.module.scss";
 
 interface HeaderProps {
 }
@@ -10,33 +10,33 @@ export const Header: FC = memo((props: HeaderProps) => {
 	const {} = props;
 	
 	return (
-		<Wrapper>
-			<Inner>
+		<header className={cls.header}>
+			<div className={cls.inner}>
 				<Link to={"/"}>
-					<Logo>DetalExpress</Logo>
+					<span className={cls.logo}>DetalExpress</span>
 				</Link>
-				<Menu>
-					<MenuList>
-						<MenuItem>
+				<div className={cls.menu}>
+					<ul className={cls.menuList}>
+						<li className={cls.menuItem}>
 							<Link to={"/tariffs"}>Тарифы</Link>
-						</MenuItem>
-						<MenuItem>
+						</li>
+						<li className={cls.menuItem}>
 							<Link to={"/reviews"}>Отзывы</Link>
-						</MenuItem>
-						<MenuItem>
+						</li>
+						<li className={cls.menuItem}>
 							<Link to={"/blog"}>Блог</Link>
-						</MenuItem>
-						<MenuItem>
+						</li>
+						<li className={cls.menuItem}>
 							<Link to={"/faq"}>Ответы на вопросы</Link>
-						</MenuItem>
-						<MenuItem>
+						</li>
+						<li className={cls.menuItem}>
 							<Link to={"/contact-us"}>Контакты</Link>
-						</MenuItem>
+						</li>
 						<span className="cube"></span>
-					</MenuList>
-				</Menu>
+					</ul>
+				</div>
 				
-				<Profile>
+				<div className={cls.profile}>
 					<Link to={"/login"}>Войти</Link>
 					<Link to={"/register"}>
 						<span>Создать аккаунт</span>
@@ -49,14 +49,14 @@ export const Header: FC = memo((props: HeaderProps) => {
 							></path>
 						</svg>
 					</Link>
-				</Profile>
+				</div>
 				
-				<BurgerMenu>
+				<div className={cls.burgerMenu}>
 					<span></span>
 					<span></span>
 					<span></span>
-				</BurgerMenu>
-			</Inner>
-		</Wrapper>
+				</div>
+			</div>
+		</header>
 	);
 });

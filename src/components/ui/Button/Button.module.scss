@@ -1,0 +1,31 @@
+.button {
+	min-width: 300px;
+	display: block;
+	outline: none;
+	white-space: nowrap;
+	height: 65px;
+	background: var(--green-color);
+	color: var(--light-color);
+	font-size: 20px;
+	font-weight: 500;
+	padding: 0 55px;
+	border-radius: 10px;
+	transition: .3s;
+	cursor: pointer;
+	
+	&:hover {
+		background-color: var(--accent-color);
+	}
+	
+	&:disabled {
+		cursor: default;
+		
+		&:hover {
+			background-color: var(--green-color);
+		}
+	}
+	
+	&.loading {
+		background: var(--accent-color);
+	}
+}

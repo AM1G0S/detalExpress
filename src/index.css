@@ -58,6 +58,10 @@ a {
 	text-decoration: none;
 }
 
+.wrapper {
+	overflow-x: hidden;
+}
+
 .container {
 	width: 100%;
 	flex-direction: column;
