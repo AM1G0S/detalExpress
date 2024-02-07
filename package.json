@@ -29,6 +29,7 @@
 		"eslint-plugin-react-hooks": "^4.6.0",
 		"eslint-plugin-react-refresh": "^0.4.5",
 		"node-sass": "^9.0.0",
+		"sass": "^1.70.0",
 		"sass-loader": "^14.1.0",
 		"style-loader": "^3.3.4",
 		"typescript": "^5.2.2",
