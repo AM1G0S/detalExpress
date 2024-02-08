@@ -3,7 +3,7 @@ import {FC, ReactNode} from "react";
 import cls from './Button.module.scss'
 
 interface ButtonProps {
-	type?: 'button';
+	type?: 'button' | 'submit';
 	disabled?: boolean;
 	children: ReactNode;
 }

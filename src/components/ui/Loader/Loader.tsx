@@ -1,4 +1,4 @@
-import loaderSvg from '@/assets/img/loader.svg';
+import loaderSvg from '../../../assets/img/loader.svg';
 import { FC, memo } from "react";
 
 interface LoaderProps {

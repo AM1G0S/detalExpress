@@ -5,8 +5,8 @@ import cls from './TabButton.module.scss'
 interface ButtonProps {
 	children: string;
 	type: ButtonHTMLAttributes<HTMLButtonElement>['type'];
-	isActive: boolean;
-	onClick: () => void;
+	isActive?: boolean;
+	onClick?: () => void;
 }
 
 export const TabButton: FC<ButtonProps> = memo((props) => {
