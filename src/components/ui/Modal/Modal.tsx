@@ -1,22 +1,27 @@
-import React, {FC} from 'react';
+import React, { FC, memo } from "react";
 
-import cls from './Modal.module.scss';
+import cls from "./Modal.module.scss";
 
 interface ModalProps {
-	children: React.ReactNode;
-	isOpen: boolean;
-	onClose: () => void;
+  children: React.ReactNode;
+  isOpen: boolean;
+  title?: string;
+  onClose: () => void;
 }
 
-export const Modal: FC<ModalProps> = ({children, isOpen, onClose}) => {
-	if (!isOpen) return null;
-	return (
-		<div className={cls.modal}>
-			<div className={cls.modalWrapper}>
-				{children}
-				<button onClick={onClose} className={cls.close}>X</button>
-			</div>
-		</div>
-	)
-};
-
+export const Modal: FC<ModalProps> = memo(({ children, isOpen, onClose, title }) => {
+  if (!isOpen) return null;
+  return (
+    <div className={cls.modal}>
+      <div className={cls.modalWrapper}>
+        <div className={cls.modalTop}>
+          <h2 className={cls.modalTitle}>{title}</h2>
+		  <button onClick={onClose} className={cls.close}>
+            X
+          </button>
+        </div>
+        {children}
+      </div>
+    </div>
+  );
+});

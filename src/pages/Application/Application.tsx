@@ -24,6 +24,7 @@ export const Application: FC = () => {
 	const mainInputValue = useSelector((state) => state.application.mainInput)
 	// @ts-ignore
 	const deliveryCity = useSelector((state) => state.application.delivery);
+	const deliveryAddress = useSelector((state) => state.application.address);
 	
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 	const [isModalOpen, setIsModalOpen] = useState(false);
@@ -118,7 +119,7 @@ export const Application: FC = () => {
 					<p className={cls.deliveryTitle}>Пункт выдачи</p>
 					<div className={cls.deliveryBox}>
 						<span className={cls.adress}>
-							{deliveryCity}
+							{deliveryCity} - {deliveryAddress}
 						</span>
 						<TabButton
 							isActive={true}

@@ -1,13 +1,15 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
 interface applicationState {
-	mainInput: number | string;
-	delivery: string;
+	mainInput?: number | string;
+	delivery?: string;
+	address?: string;
 }
 
 const initialState: applicationState = {
 	mainInput: '',
-	delivery: 'Москва'
+	delivery: 'Москва',
+	address: ''
 };
 
 export const applicationSlice = createSlice({
@@ -19,11 +21,13 @@ export const applicationSlice = createSlice({
 		},
 		setDelivery: (state, action: PayloadAction<applicationState>) => {
 			state.delivery = action.payload.delivery;
-			console.log(state.delivery)
-		}
+		},
+		setAddress: (state, action: PayloadAction<applicationState>) => {
+			state.address = action.payload.address;
+		},
 	},
 });
 
-export const {setMainInput, setDelivery} = applicationSlice.actions;
+export const {setMainInput, setDelivery, setAddress} = applicationSlice.actions;
 
 export default applicationSlice.reducer;
