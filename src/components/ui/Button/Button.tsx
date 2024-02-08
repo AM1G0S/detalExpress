@@ -6,11 +6,12 @@ interface ButtonProps {
 	type?: 'button' | 'submit';
 	disabled?: boolean;
 	children: ReactNode;
+	onClick?: () => void;
 }
 
-export const Button: FC<ButtonProps> = ({children, disabled, type='button'}) => {
+export const Button: FC<ButtonProps> = ({children, disabled, type='button', onClick}) => {
 	return (
-		<button className={cls.button} disabled={disabled} type={type}>
+		<button className={cls.button} onClick={onClick} disabled={disabled} type={type}>
 			{children}
 		</button>
 	)

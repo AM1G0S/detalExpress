@@ -2,10 +2,12 @@ import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
 interface applicationState {
 	mainInput: number | string;
+	delivery: string;
 }
 
 const initialState: applicationState = {
 	mainInput: '',
+	delivery: 'Москва'
 };
 
 export const applicationSlice = createSlice({
@@ -15,9 +17,13 @@ export const applicationSlice = createSlice({
 		setMainInput: (state, action: PayloadAction<applicationState>) => {
 			state.mainInput = action.payload.mainInput;
 		},
+		setDelivery: (state, action: PayloadAction<applicationState>) => {
+			state.delivery = action.payload.delivery;
+			console.log(state.delivery)
+		}
 	},
 });
 
-export const {setMainInput} = applicationSlice.actions;
+export const {setMainInput, setDelivery} = applicationSlice.actions;
 
 export default applicationSlice.reducer;
