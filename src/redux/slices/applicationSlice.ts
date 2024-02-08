@@ -21,9 +21,11 @@ export const applicationSlice = createSlice({
 		},
 		setDelivery: (state, action: PayloadAction<applicationState>) => {
 			state.delivery = action.payload.delivery;
+			state.address = ''
 		},
 		setAddress: (state, action: PayloadAction<applicationState>) => {
 			state.address = action.payload.address;
+			console.log(state.address)
 		},
 	},
 });

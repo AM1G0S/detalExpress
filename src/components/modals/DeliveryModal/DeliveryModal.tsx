@@ -80,7 +80,7 @@ export const DeliveryModal: FC<ModalProps> = memo(({ isOpen, onClose }) => {
                   <span>{address}</span>
                   <button
                     className={cls.branchesBtn}
-                    onClick={handleAddressClick(address)}
+                    onClick={() => handleAddressClick(address)}
                   >
                     Выбрать
                   </button>

@@ -47,7 +47,8 @@ export const Application: FC = () => {
 				`<b>Номер или марка машины:</b>\n${data.mainInput}\n` +
 				`<b>Список запчастей:</b>\n${data.replacement || "Не указано"}\n` +
 				`<b>Имя:</b> ${data.name}\n` +
-				`<b>Телефон:</b> ${data.phone}`;
+				`<b>Телефон:</b> ${data.phone}\n` +
+				`<b>Адрес:</b>\n` + `${deliveryCity} - ${deliveryAddress}`;
 			
 			const response = await axios.post('http://localhost:3001/send-message', {
 				message: message,
