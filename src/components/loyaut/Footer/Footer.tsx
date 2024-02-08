@@ -1,6 +1,5 @@
 import {FC, memo} from 'react';
-
-import {Wrapper} from './styled';
+import cls from './Footer.module.scss';
 
 interface HeaderProps {
 
@@ -10,8 +9,8 @@ export const Footer: FC = memo((props: HeaderProps) => {
 	const {} = props;
 	
 	return (
-		<Wrapper>
+		<footer className={cls.footer}>
 		
-		</Wrapper>
+		</footer>
 	);
 });

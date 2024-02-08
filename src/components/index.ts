@@ -1,2 +1,5 @@
-export * from './Header/Header'
-export * from './Footer/Footer'
+export * from './loyaut/Header/Header'
+export * from './loyaut/Footer/Footer'
+export * from './ui/FormCheck/FormCheck'
+export * from './ui/TabButton/TabButton'
+export * from './ui/Input/Input'

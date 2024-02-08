@@ -1,0 +1,77 @@
+.active {
+	color: var(--accent-color);
+}
+
+.deliveryList {
+	max-height: 150px;
+	padding-top: 8px;
+	overflow-x: scroll;
+	overflow-x: hidden;
+	border-bottom: 1px solid var(--grey-color);
+	li {
+		cursor: pointer;
+	}
+}
+
+.branches {
+	padding: 10px 0;
+}
+
+.deliveryInfo {
+	padding: 20px 10px;
+	background-color: rgb(243 243 255);
+	border-radius: 5px;
+}
+
+.branchesTitle {
+	margin-bottom: 10px;
+}
+
+.branchesList {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+}
+
+.branchesItem {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	height: 26px;
+}
+
+.branchesBtn {
+	padding: 3px 10px;
+	border: 2px solid var(--accent-color);
+	font-weight: 600;
+	color: var(--accent-color);
+	border-radius: 5px;
+	cursor: pointer;
+	background-color: transparent;
+}
+
+.deliveryText {
+	font-size: 14px;
+	opacity: 0.8;
+	margin-bottom: 20px;
+	line-height: 1.4;
+}
+
+.contats {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+
+	@media (max-width: 375px) {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 10px;
+	}
+}
+
+.contatsBox {
+	span {
+		font-size: 13px;
+		opacity: 0.8;
+	}
+}

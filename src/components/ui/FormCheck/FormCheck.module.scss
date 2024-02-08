@@ -1,0 +1,34 @@
+.formWrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.inputTabs {
+	display: flex;
+	align-items: center;
+	gap: 15px;
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.label span {
+	display: inline-block;
+	margin-top: 5px;
+}
+
+.error {
+	border: 1px solid red;
+	
+	&::placeholder {
+		color: red;
+	}
+}
+
+.errorText {
+	color: red;
+}
