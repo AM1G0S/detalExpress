@@ -44,18 +44,23 @@ const branches: Record<string, string[]> = {
 };
 
 export const DeliveryModal: FC<ModalProps> = memo(({ isOpen, onClose }) => {
+  const dispatch = useDispatch();
   const [activeCity, setActiveCity] = useState(
     useSelector((state: RootState) => state.application.delivery)
   );
-  const dispatch = useDispatch();
-
+  const [activeAddress, setActiveAddress] = useState<string | undefined>(
+    useSelector((state: RootState) => state.application.address)
+  );
+  
   const handleCityClick = (city: string) => {
-    setActiveCity(city);
     dispatch(setDelivery({ delivery: city }));
+    setActiveAddress('')
+    setActiveCity(city);
   };
 
   const handleAddressClick = useCallback((address: string) => {
     dispatch(setAddress({ address: address }));
+    setActiveAddress(address);
   }, []);
 
   return (
@@ -78,13 +83,16 @@ export const DeliveryModal: FC<ModalProps> = memo(({ isOpen, onClose }) => {
             <ul className={cls.branchesList}>
               {branches[activeCity].map((address, index) => (
                 <li className={cls.branchesItem} key={index}>
-                  <span>{address}</span>
-                  <button
-                    className={cls.branchesBtn}
-                    onClick={() => handleAddressClick(address)}
-                  >
-                    Выбрать
-                  </button>
+                  <span className={activeAddress === address ? cls.active : ""}>{address}</span>
+                  
+                  {activeAddress !== address && (
+                    <button
+                      className={cls.branchesBtn}
+                      onClick={() => handleAddressClick(address)}
+                    >
+                      Выбрать
+                    </button>
+                  )}
                 </li>
               ))}
             </ul>

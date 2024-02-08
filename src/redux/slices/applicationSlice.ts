@@ -9,7 +9,7 @@ interface applicationState {
 const initialState: applicationState = {
 	mainInput: '',
 	delivery: 'Москва',
-	address: ''
+	address: 'ул. Шимановского 46'
 };
 
 export const applicationSlice = createSlice({
@@ -25,7 +25,6 @@ export const applicationSlice = createSlice({
 		},
 		setAddress: (state, action: PayloadAction<applicationState>) => {
 			state.address = action.payload.address;
-			console.log(state.address)
 		},
 	},
 });
