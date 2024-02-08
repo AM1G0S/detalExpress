@@ -8,11 +8,12 @@ import {Input, TabButton} from "../../components";
 import {DeliveryModal} from "../../components/modals/DeliveryModal/DeliveryModal";
 import {Button} from "../../components/ui/Button/Button.tsx";
 import {Loader} from "../../components/ui/Loader/Loader.tsx";
+import {RootState} from "../../redux/store.ts";
 
 import cls from "./Application.module.scss"
 
 type Inputs = {
-	mainInput: string
+	mainInput: string | number
 	replacement: string
 	name: string
 	phone: number
@@ -20,11 +21,9 @@ type Inputs = {
 }
 
 export const Application: FC = () => {
-	// @ts-ignore
-	const mainInputValue = useSelector((state) => state.application.mainInput)
-	// @ts-ignore
-	const deliveryCity = useSelector((state) => state.application.delivery);
-	const deliveryAddress = useSelector((state) => state.application.address);
+	const mainInputValue = useSelector((state: RootState) => state.application.mainInput)
+	const deliveryCity = useSelector((state: RootState) => state.application.delivery);
+	const deliveryAddress = useSelector((state: RootState) => state.application.address);
 	
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 	const [isModalOpen, setIsModalOpen] = useState(false);
@@ -54,7 +53,6 @@ export const Application: FC = () => {
 				message: message,
 				parse_mode: 'html'
 			});
-			
 			if (response.data.success) {
 				setIsLoading(false)
 				alert('Запрос успешно отправлен!');

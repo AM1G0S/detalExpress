@@ -1,6 +1,7 @@
 import { FC, memo, useCallback, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setDelivery, setAddress } from "../../../redux/slices/applicationSlice.ts";
+import {RootState} from "../../../redux/store.ts";
 import { Modal } from "../../ui/Modal/Modal";
 
 import cls from "./DeliveryModal.module.scss";
@@ -44,7 +45,7 @@ const branches: Record<string, string[]> = {
 
 export const DeliveryModal: FC<ModalProps> = memo(({ isOpen, onClose }) => {
   const [activeCity, setActiveCity] = useState(
-    useSelector((state) => state.application.delivery)
+    useSelector((state: RootState) => state.application.delivery)
   );
   const dispatch = useDispatch();
 
