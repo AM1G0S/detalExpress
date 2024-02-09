@@ -49,7 +49,7 @@ export const Application: FC = () => {
 				`<b>Телефон:</b> ${data.phone}\n` +
 				`<b>Адрес:</b>\n` + `${deliveryCity} - ${deliveryAddress}`;
 			
-			const response = await axios.post('/send-message', {
+			const response = await axios.post('/api/send-message', {
 				message: message,
 				parse_mode: 'html'
 			});
