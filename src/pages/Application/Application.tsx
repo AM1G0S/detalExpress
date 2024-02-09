@@ -56,13 +56,11 @@ export const Application: FC = () => {
 			if (response.data.success) {
 				setIsLoading(false)
 				alert('Запрос успешно отправлен!');
-			} else {
-				alert('Ошибка при отправке сообщения');
 			}
 		} catch (error) {
 			console.error(error);
 			setIsLoading(false)
-			alert('Ошибка при отправке сообщения');
+			console.log('Ошибка при отправке сообщения');
 		}
 	};
 	
