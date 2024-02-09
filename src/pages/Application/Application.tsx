@@ -38,14 +38,6 @@ export const Application: FC = () => {
 		}
 	})
 	
-	fetch("send-message", {
-		method: "POST",
-		headers: {
-			"Content-Type": "application/json",
-		},
-		body: JSON.stringify({message: "test"}),
-	})
-	
 	const onSubmit: SubmitHandler<Inputs> = async (data) => {
 		try {
 			setIsLoading(true)
