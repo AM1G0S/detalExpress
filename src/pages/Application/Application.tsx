@@ -4,10 +4,9 @@ import {FC, useState} from "react";
 import {SubmitHandler, useForm} from "react-hook-form";
 import {useSelector} from "react-redux";
 import {Link} from "react-router-dom";
-import {Input, TabButton} from "../../components";
+import {Input} from "../../components";
 import {DeliveryModal} from "../../components/modals/DeliveryModal/DeliveryModal";
 import {Button} from "../../components/ui/Button/Button.tsx";
-import {Loader} from "../../components/ui/Loader/Loader.tsx";
 import {RootState} from "../../redux/store.ts";
 
 import cls from "./Application.module.scss"
@@ -49,7 +48,7 @@ export const Application: FC = () => {
 				`<b>Телефон:</b> ${data.phone}\n` +
 				`<b>Адрес:</b>\n` + `${deliveryCity} - ${deliveryAddress}`;
 			
-			const response = await axios.post('/api/send-message', {
+			const response = await axios.post('http://localhost:3000/api/send-message', {
 				message: message,
 				parse_mode: 'html'
 			});
@@ -118,13 +117,7 @@ export const Application: FC = () => {
 						<span className={cls.adress}>
 							{deliveryCity} - {deliveryAddress}
 						</span>
-						<TabButton
-							isActive={true}
-							type={'button'}
-							onClick={() => setIsModalOpen(!isModalOpen)}
-						>
-							Изменить
-						</TabButton>
+						<Button onClick={() => setIsModalOpen(!isModalOpen)}>Изменить</Button>
 					</div>
 				</div>
 				
@@ -144,8 +137,8 @@ export const Application: FC = () => {
 					{errors.checkbox && <p className={cls.errorText + ' ' + cls.checkboxEroor}>Примите оферту</p>}
 				</div>
 				
-				<Button type={'submit'}>
-					{isLoading ? <Loader width={40} height={40}/> : 'Отправить запрос'}
+				<Button isLoading={isLoading} type={'submit'}>
+					Отправить запрос
 				</Button>
 			</form>
 			

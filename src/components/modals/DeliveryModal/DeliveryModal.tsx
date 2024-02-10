@@ -2,6 +2,7 @@ import { FC, memo, useCallback, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setDelivery, setAddress } from "../../../redux/slices/applicationSlice.ts";
 import {RootState} from "../../../redux/store.ts";
+import {Button} from "../../ui/Button/Button.tsx";
 import { Modal } from "../../ui/Modal/Modal";
 
 import cls from "./DeliveryModal.module.scss";
@@ -86,12 +87,13 @@ export const DeliveryModal: FC<ModalProps> = memo(({ isOpen, onClose }) => {
                   <span className={activeAddress === address ? cls.active : ""}>{address}</span>
                   
                   {activeAddress !== address && (
-                    <button
-                      className={cls.branchesBtn}
+                    <Button
+                      variant={"select"}
+                      size={"sm"}
                       onClick={() => handleAddressClick(address)}
                     >
                       Выбрать
-                    </button>
+                    </Button>
                   )}
                 </li>
               ))}

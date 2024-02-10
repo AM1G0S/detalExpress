@@ -1,14 +1,13 @@
 import classnames from 'classnames';
-import { FC, memo, useEffect, useState} from "react";
+import {FC, memo, useEffect, useState} from "react";
 import {SubmitHandler, useForm} from "react-hook-form";
 import {useDispatch} from "react-redux";
 import {AppDispatch} from "../../../redux/store.ts";
 
 import {setMainInput} from "../../../redux/slices/applicationSlice";
 
-import {Button} from "../Button/Button.tsx";
+import {Button} from "../Button/Button";
 import {Input} from "../Input/Input";
-import {TabButton} from "../TabButton/TabButton";
 import {useNavigate} from "react-router-dom";
 
 import cls from "./FormCheck.module.scss";
@@ -54,13 +53,15 @@ export const FormCheck: FC = memo((props: FormCheckProps) => {
 		<div className={cls.formWrapper}>
 			<div className={cls.inputTabs}>
 				{tabs.map((tab, index) => (
-					<TabButton
+					<Button
+						variant={"secondary"}
+						size={"lg"}
 						key={index}
 						isActive={activeTab === index}
 						onClick={() => handleTabClick(index)}
-						type={'button'}>
+					>
 						{tab}
-					</TabButton>
+					</Button>
 				))}
 			</div>
 			
@@ -79,7 +80,7 @@ export const FormCheck: FC = memo((props: FormCheckProps) => {
 						{errors.mainInput && <span className={cls.errorText}>{errors.mainInput.message}</span>}
 					</label>
 					
-					<Button type={'submit'}>
+					<Button className={cls.button} type={'submit'}>
 						Отправить заявку
 					</Button>
 				</form>

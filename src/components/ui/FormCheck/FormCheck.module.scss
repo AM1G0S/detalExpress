@@ -32,3 +32,13 @@
 .errorText {
 	color: red;
 }
+
+.button {
+	max-width: 330px;
+	width: 100%;
+	margin: 0 auto;
+	
+	@media (max-width: 375px) {
+		width: 100% !important;
+	}
+}
