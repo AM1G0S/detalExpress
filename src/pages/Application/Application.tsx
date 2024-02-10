@@ -117,7 +117,7 @@ export const Application: FC = () => {
 						<span className={cls.adress}>
 							{deliveryCity} - {deliveryAddress}
 						</span>
-						<Button onClick={() => setIsModalOpen(!isModalOpen)}>Изменить</Button>
+						<Button size={"lg"} onClick={() => setIsModalOpen(!isModalOpen)}>Изменить</Button>
 					</div>
 				</div>
 				
@@ -128,7 +128,9 @@ export const Application: FC = () => {
 								required: 'Это поле обязательно к заполнению'
 							})}
 							className={classnames(cls.checkbox, {[cls.error]: errors.checkbox})}
-							type="checkbox"/>
+							type="checkbox"
+							checked={true}
+						/>
 						<span>
 					Согласен на обработку персональных данных в соответствии с <Link
 							to="/politic">Политикой конфиденциальности</Link>

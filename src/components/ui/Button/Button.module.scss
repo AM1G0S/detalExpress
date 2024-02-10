@@ -26,6 +26,8 @@
 
 .secondary {
 	border-radius: 5px;
+	background-color: var(--grey-color);
+	color: #bbb;
 	
 	&.active {
 		color: var(--light-color);
@@ -40,7 +42,40 @@
 	border-radius: 5px;
 }
 
-.sm { padding: 0.25em 0.5em; font-size: 0.8rem; }
-.md { padding: 0.5em 1em; font-size: 1rem; }
-.lg { padding: 0.70em 1.5em; font-size: 1.2rem; }
-.xl { padding: 20px 50px; font-size: 20px; max-height: 65px; }
+.sm {
+	padding: 0.25em 0.5em;
+	font-size: 0.8rem;
+}
+
+.md {
+	padding: 0.5em 1em;
+	font-size: 1rem;
+}
+
+.lg {
+	padding: 0.70em 1.5em;
+	font-size: 20px;
+}
+
+.xl {
+	padding: 20px 50px;
+	font-size: 20px;
+	max-height: 65px;
+}
+
+@media (max-width: 480px) {
+	.lg {
+		padding: 0.70em 0.5em;
+		font-size: 18px;
+	}
+}
+
+@media (max-width: 375px) {
+	.button {
+		font-size: 14px;
+	}
+	
+	.lg {
+		padding: 1em 0.5em;
+	}
+}
