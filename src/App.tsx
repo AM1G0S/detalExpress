@@ -1,8 +1,9 @@
-import {Application} from "./pages/Application/Application.tsx";
-import { FC, Suspense } from "react";
+import {FC, lazy, Suspense} from "react";
 import { Routes, Route } from "react-router-dom";
 import { Home } from "./pages/Home/Home";
 import MainLayout from "./components/loyaut/MainLayout.tsx";
+
+const Application = lazy(() => import('./pages/Application/Application'));
 
 const App: FC = () => {
   return (

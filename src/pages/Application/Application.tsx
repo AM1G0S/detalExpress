@@ -19,7 +19,7 @@ type Inputs = {
 	checkbox: boolean
 }
 
-export const Application: FC = () => {
+const Application: FC = () => {
 	const mainInputValue = useSelector((state: RootState) => state.application.mainInput)
 	const deliveryCity = useSelector((state: RootState) => state.application.delivery);
 	const deliveryAddress = useSelector((state: RootState) => state.application.address);
@@ -142,3 +142,5 @@ export const Application: FC = () => {
 		</>
 	)
 }
+
+export default Application

@@ -1,7 +1,7 @@
 import {
 	ChangeEvent,
 	ForwardedRef,
-	forwardRef
+	forwardRef, memo
 } from "react";
 import cls from "./Input.module.scss";
 import classnames from 'classnames';
@@ -26,7 +26,7 @@ interface InputProps {
 	errorText?: string;
 }
 
-export const Input = forwardRef<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement,	InputProps>((
+export const Input = memo(forwardRef<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement, InputProps>((
 		{
 			type = 'text',
 			placeholder,
@@ -112,4 +112,4 @@ export const Input = forwardRef<HTMLInputElement | HTMLSelectElement | HTMLTextA
 			</label>
 		);
 	}
-);
+));

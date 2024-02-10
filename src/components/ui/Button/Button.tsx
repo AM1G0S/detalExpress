@@ -1,5 +1,5 @@
 import classnames from "classnames";
-import {FC, ReactNode} from "react";
+import {FC, memo, ReactNode} from "react";
 import {Loader} from "../Loader/Loader";
 
 import cls from './Button.module.scss'
@@ -15,16 +15,16 @@ interface ButtonProps {
 	isActive?: boolean
 }
 
-export const Button: FC<ButtonProps> = ({
-	                                        children,
-	                                        type = "button",
-	                                        onClick,
-	                                        variant = "primary",
-	                                        className,
-	                                        isLoading = false,
-	                                        size = 'xl',
-	                                        isActive = false,
-                                        }) => {
+export const Button: FC<ButtonProps> = memo(({
+	                                             children,
+	                                             type = "button",
+	                                             onClick,
+	                                             variant = "primary",
+	                                             className,
+	                                             isLoading = false,
+	                                             size = 'xl',
+	                                             isActive = false,
+                                             }) => {
 	return (
 		<button
 			className={classnames(
@@ -40,4 +40,4 @@ export const Button: FC<ButtonProps> = ({
 			{isLoading ? <Loader width={40} height={40}/> : children}
 		</button>
 	);
-};
+});
