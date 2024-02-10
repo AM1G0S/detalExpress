@@ -35,18 +35,6 @@
 	margin-top: 5px;
 }
 
-.error {
-	border: 1px solid red;
-	
-	&::placeholder {
-		color: red;
-	}
-}
-
-.errorText {
-	color: red;
-}
-
 .button {
 	max-width: 330px;
 	width: 100%;

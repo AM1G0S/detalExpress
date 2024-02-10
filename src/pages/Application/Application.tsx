@@ -5,8 +5,8 @@ import {SubmitHandler, useForm} from "react-hook-form";
 import {useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 import {Input} from "../../components";
-import {DeliveryModal} from "../../components/modals/DeliveryModal/DeliveryModal";
-import {Button} from "../../components/ui/Button/Button.tsx";
+import {DeliveryModal} from "../../components";
+import {Button} from "../../components";
 import {RootState} from "../../redux/store.ts";
 
 import cls from "./Application.module.scss"
@@ -66,49 +66,43 @@ export const Application: FC = () => {
 	return (
 		<>
 			<form className={cls.form} onSubmit={handleSubmit(onSubmit)}>
-				<label className={cls.label}>
-					<p className={cls.subtitle}>VIN-номер или марка машины</p>
-					<Input
-						className={classnames({[cls.error]: errors.mainInput})}
-						{...register("mainInput", {
-							required: 'Это поле обязательно к заполнению'
-						})}
-						placeholder={errors.mainInput ? 'Это поле обязательно к заполнению' : 'XTAGFL110KY343166'}
-						type={'text'}
-					/>
-				</label>
-				<label className={cls.label}>
-					<p className={cls.subtitle}>Укажите список запчастей</p>
-					<textarea
-						{...register("replacement")}
-						placeholder={'Диски, тряпки, антифриз, грм, помпа'}
-						className={cls.textarea}
-					/>
-				</label>
+				<Input
+					name={'mainInput'}
+					label={'VIN-номер или марка машины'}
+					placeholder={'XTAGFL110KY343166'}
+					register={register}
+					errors={errors}
+				/>
+				
+				<Input
+					type={"textarea"}
+					name={'replacement'}
+					label={'Укажите список запчастей'}
+					placeholder={'Диски, тряпки, антифриз, грм, помпа'}
+					register={register}
+					errors={errors}
+					isRequired={false}
+				/>
 				
 				<div className={cls.formBox}>
-					<label className={cls.label}>
-						<p className={cls.subtitle}>Имя</p>
-						<Input
-							className={classnames({[cls.error]: errors.name})}
-							{...register("name", {
-								required: 'Это поле обязательно к заполнению'
-							})}
-							placeholder={errors.name ? 'Это поле обязательно к заполнению' : 'Андрей'}
-							type={'text'}
-						/>
-					</label>
-					<label className={cls.label}>
-						<p className={cls.subtitle}>Телефон</p>
-						<Input
-							className={classnames({[cls.error]: errors.phone})}
-							{...register("phone", {
-								required: 'Это поле обязательно к заполнению'
-							})}
-							placeholder={errors.phone ? 'Это поле обязательно к заполнению' : '89194121355'}
-							type={'tel'}
-						/>
-					</label>
+					<Input
+						name={'name'}
+						label={'Имя'}
+						placeholder={'Андрей'}
+						errorText={'Введите Имя'}
+						register={register}
+						errors={errors}
+					/>
+					
+					<Input
+						name={'phone'}
+						label={'Телефон'}
+						placeholder={'89194121355'}
+						errorText={'Некорректный номер телефона'}
+						register={register}
+						errors={errors}
+						type={'tel'}
+					/>
 				</div>
 				
 				<div className={cls.delivery}>
