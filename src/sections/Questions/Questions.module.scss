@@ -1,7 +1,50 @@
 .questions {
 	position: relative;
 	gap: 40px;
-
+	padding-bottom: 85px;
+	overflow: hidden;
+	
+	&::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		right: -40px;
+		width: 200px;
+		height: 200px;
+		background-image: url("../../assets/img/absorber.png");
+		background-repeat: no-repeat;
+		background-size: contain;
+		background-position-x: right;
+		z-index: -1;
+		
+		@media (max-width: 660px) {
+			top: 50px;
+			right: -30px;
+			max-width: 150px;
+		}
+	}
+	
+	&::after {
+		content: "";
+		position: absolute;
+		top: -50%;
+		left: 86px;
+		height: 200%;
+		width: 300px;
+		background-color: lightgreen;
+		opacity: 0.3;
+		rotate: 21deg;
+		z-index: -1;
+		
+		@media (max-width: 991px) {
+			left: -14%;
+		}
+		
+		@media (max-width: 660px) {
+			content: none;
+		}
+	}
+	
 	@media (max-width: 660px) {
 		flex-direction: column;
 	}
@@ -27,14 +70,6 @@
 	max-width: 250px;
 	
 	@media (max-width: 660px) {
-		max-width: 50px;
-		position: absolute;
-		top: 70px;
-		right: 0;
-	}
-	
-	@media (max-width: 480px) {
-		top: 100px;
-		max-width: 30px;
+		display: none;
 	}
 }

@@ -4,8 +4,12 @@
 	line-height: 1.1;
 	margin-bottom: 35px;
 	
-	@media (max-width: 660px) {
+	@media (max-width: 768px) {
 		font-size: 48px;
+		
+		span {
+			display: block;
+		}
 	}
 	
 	@media (max-width: 375px) {
@@ -15,6 +19,12 @@
 
 .formWrapper {
 	position: relative;
+	margin-bottom: 60px;
+	
+	@media (max-width: 768px) {
+		flex-direction: column;
+		margin-bottom: 40px;
+	}
 }
 
 .video {
@@ -25,4 +35,19 @@
 	object-fit: cover;
 	z-index: -1;
 	max-width: 960px;
+	
+	@media (max-width: 991px) {
+		max-width: clamp(21.25rem, -56.016rem + 187.31vw, 60rem); //960 - 340
+		right: -232px;
+	}
+	
+	@media (max-width: 768px) {
+		top: 0;
+		transform: none;
+		right: -182px;
+	}
+	
+	@media (max-width: 480px) {
+		right: -246px;
+	}
 }

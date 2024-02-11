@@ -19,7 +19,7 @@ export const Home: FC = memo((props: HomeProps) => {
 		<>
 			<div className={classnames(styles.wrapper, cls.formWrapper, 'separator')}>
 				<div className={styles.inner}>
-					<h1 className={cls.title}>Нужны автозапчасти?</h1>
+					<h1 className={cls.title}><span>Нужны</span> автозапчасти?</h1>
 					<HomeForm></HomeForm>
 				</div>
 				<div className={styles.inner}>
