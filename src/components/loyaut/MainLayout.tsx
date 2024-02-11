@@ -9,19 +9,21 @@ const MainLayout: FC = () => {
 	
 	return (
 		<div className="wrapper">
-			<div className="container">
-				<Header/>
-				
-				<main className="content">
+			
+			<Header/>
+			
+			<main className="content">
+				<div className="container">
 					{currentPath === '/' ? ''
 						:
 						<Pagination currentPage={currentPath}/>
 					}
 					<Outlet/>
-				</main>
-				
-				<Footer/>
-			</div>
+				</div>
+			</main>
+			
+			<Footer/>
+		
 		</div>
 	);
 };
