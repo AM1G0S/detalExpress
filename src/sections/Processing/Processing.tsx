@@ -5,32 +5,37 @@ import {ProcessStep} from "../../components";
 import cls from "./Processing.module.scss";
 import styles from "../../styles/style.module.scss";
 
+//images
 import processingImg from "../../assets/img/basket.png";
+import step1 from "../../assets/img/step1.png";
+import step2 from "../../assets/img/step2.png";
+import step3 from "../../assets/img/step3.png";
+import step4 from "../../assets/img/step4.png";
 
 const processingSteps = [
 	{
 		step: 1,
 		title: "Отправьте информацию об авто и список нужных запчастей",
 		description: "Информация передается нашему менеджеру",
-		imgSrc: '/src/assets/img/step1.png'
+		imgSrc: step1
 	},
 	{
 		step: 2,
 		title: "Наш менеджер свяжется с Вами",
 		description: "Уточнит детали по списком запчастей",
-		imgSrc: '/src/assets/img/step2.png'
+		imgSrc: step2
 	},
 	{
 		step: 3,
 		title: "Перейдите в «Мои запросы»",
 		description: "Оплатите удобным для Вас способом",
-		imgSrc: '/src/assets/img/step3.png'
+		imgSrc: step3
 	},
 	{
 		step: 4,
 		title: "Доставим заказы в течение 1 дня",
 		description: "Получите заказ в пунтке выдачи, который указали во время оформления",
-		imgSrc: '/src/assets/img/step4.png'
+		imgSrc: step4
 	},
 ]
 
