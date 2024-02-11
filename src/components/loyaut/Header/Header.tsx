@@ -2,6 +2,7 @@ import {FC, memo} from "react";
 import {Link} from "react-router-dom";
 
 import cls from "./Header.module.scss";
+import logoImg from "../../../assets/img/logo.png";
 
 interface HeaderProps {
 }
@@ -13,7 +14,7 @@ export const Header: FC = memo((props: HeaderProps) => {
 		<header className={cls.header}>
 			<div className={cls.inner}>
 				<Link to={"/"}>
-					<span className={cls.logo}>DetalExpress</span>
+					<img src={logoImg} className={cls.logo}/>
 				</Link>
 				<div className={cls.menu}>
 					<ul className={cls.menuList}>
