@@ -13,7 +13,7 @@ export const Footer: FC = memo((props: HeaderProps) => {
 	const {} = props;
 	
 	return (
-		<footer className={cls.footer}>
+		<footer className={classnames(cls.footer, 'separator')}>
 			<div className="container">
 				<div className={cls.top}>
 					<div>

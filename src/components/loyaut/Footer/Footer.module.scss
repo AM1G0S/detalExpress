@@ -1,9 +1,13 @@
 .footer {
-	padding: 40px 0 0 0;
-	background-color: var(--light-color);
+	padding: 95px 0 0 0;
+	
+	&::before {
+		top: 0;
+		bottom: auto !important;
+	}
 	
 	@media (max-width: 660px) {
-		padding: 20px 0 0 0;
+		padding: 65px 0 0 0;
 	}
 }
 

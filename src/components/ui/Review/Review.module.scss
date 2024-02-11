@@ -1,0 +1,52 @@
+.review {
+	position: relative;
+	max-width: 350px;
+	padding: 40px 20px 20px 20px;
+	border-radius: 5px;
+	box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+}
+
+.platformIcon {
+	position: absolute;
+	top: -25px;
+	left: 50%;
+	translate: -50% 0;
+	max-width: 50px;
+	z-index: -1;
+}
+
+.text {
+	text-wrap: balance;
+	margin-bottom: 30px;
+}
+
+.bottom {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 20px;
+}
+
+.user {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	font-weight: 500;
+	font-size: 14px;
+}
+
+.avatar {
+	max-width: 48px;
+	border-radius: 50%;
+}
+
+.userLocation {
+	display: flex;
+	align-items: center;
+	translate: 0 23px;
+	font-size: 14px;
+}
+
+.locationIcon {
+	max-width: 20px;
+}
