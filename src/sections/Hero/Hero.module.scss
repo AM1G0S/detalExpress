@@ -24,6 +24,12 @@
 		flex-direction: column;
 		margin-bottom: 40px;
 	}
+	
+	@media (max-width: 660px) {
+		&::before {
+			bottom: -85px !important;
+		}
+	}
 }
 
 .video {

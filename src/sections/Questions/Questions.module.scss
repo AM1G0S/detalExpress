@@ -1,8 +1,13 @@
 .questions {
-	overflow: hidden;
+	display: flex;
+	padding-top: 0;
 	gap: 40px;
 	
 	&::before {
+		bottom: 10px !important;
+	}
+	
+	&::after {
 		content: '';
 		position: absolute;
 		top: 0;
@@ -21,6 +26,22 @@
 			max-width: 150px;
 		}
 	}
+	
+	@media (max-width: 660px) {
+		flex-direction: column;
+	}
+	
+	h2 {
+		span {
+			display: block;
+		}
+	}
+}
+
+.wrapper {
+	position: relative;
+	padding: 85px 0;
+	overflow: hidden;
 	
 	&::after {
 		content: "";
@@ -44,12 +65,10 @@
 	}
 	
 	@media (max-width: 660px) {
-		flex-direction: column;
-	}
-	
-	h2 {
-		span {
-			display: block;
+		padding: 40px 0;
+		
+		& > div:first-child {
+			display: none;
 		}
 	}
 }
@@ -58,8 +77,4 @@
 	display: block;
 	margin: 0 auto;
 	max-width: 250px;
-	
-	@media (max-width: 660px) {
-		display: none;
-	}
 }

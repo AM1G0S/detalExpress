@@ -1,6 +1,10 @@
 .footer {
 	padding: 40px 0 0 0;
 	background-color: var(--light-color);
+	
+	@media (max-width: 660px) {
+		padding: 20px 0 0 0;
+	}
 }
 
 .top {
