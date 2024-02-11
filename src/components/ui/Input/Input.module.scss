@@ -23,15 +23,12 @@
 	}
 	
 	&.error {
+		color: var(--orange-color);
 		border: 1px solid var(--orange-color);
 		
 		&::placeholder {
 			color: var(--orange-color);
 		}
-	}
-	
-	&.errorText {
-		color: var(--orange-color);
 	}
 	
 	@media (max-width: 660px) {
@@ -42,6 +39,11 @@
 	}
 }
 
+.errorText {
+	color: var(--orange-color);
+	font-size: 13px;
+}
+
 .label {
 	flex: 1 1 auto;
 	width: 100%;
@@ -49,6 +51,12 @@
 
 .subtitle {
 	font-size: 18px;
+	margin-right: 5px;
+}
+
+.subtitle,
+.errorText {
+	display: inline-block;
 	margin-bottom: 5px;
 }
 

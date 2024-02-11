@@ -1,6 +1,6 @@
 export * from './loyaut/Header/Header'
 export * from './loyaut/Footer/Footer'
-export * from './ui/FormCheck/FormCheck'
+export * from './ui/HomeForm/HomeForm.tsx'
 export * from './ui/Input/Input'
 export * from './ui/Button/Button'
 export * from './ui/Modal/Modal'

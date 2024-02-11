@@ -1,5 +1,5 @@
 import { FC, memo } from "react";
-import { FormCheck } from "../../components";
+import { HomeForm } from "../../components";
 import cls from "./Home.module.scss";
 
 import mainImgSrc from "../../assets/img/main-image.png";
@@ -13,7 +13,7 @@ export const Home: FC = memo((props: HomeProps) => {
     <div className={cls.formWrapper}>
       <div className={cls.inner}>
         <h1 className={cls.title}>Нужны автозапчасти?</h1>
-        <FormCheck></FormCheck>
+        <HomeForm></HomeForm>
       </div>
       <div className={cls.inner}>
         <img className={cls.mainImg} src={mainImgSrc} alt={""}/>

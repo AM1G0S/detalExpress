@@ -1,7 +1,6 @@
 import {
-	ChangeEvent,
 	ForwardedRef,
-	forwardRef, memo
+	forwardRef,
 } from "react";
 import cls from "./Input.module.scss";
 import classnames from 'classnames';
@@ -16,8 +15,6 @@ interface InputProps {
 	placeholder?: string;
 	label?: string;
 	isRequired?: boolean;
-	value?: string;
-	onChange?: (event: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => void;
 	className?: string;
 	register?: any;
 	name: string;
@@ -26,12 +23,10 @@ interface InputProps {
 	errorText?: string;
 }
 
-export const Input = memo(forwardRef<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement, InputProps>((
+export const Input = forwardRef<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement, InputProps>((
 		{
 			type = 'text',
 			placeholder,
-			onChange,
-			value,
 			className,
 			label,
 			isRequired = true,
@@ -46,6 +41,7 @@ export const Input = memo(forwardRef<HTMLInputElement | HTMLSelectElement | HTML
 	) => {
 		
 		const isError = errors && errors[name];
+		const errorMessage = isError && errors[name].message ? errors[name].message : errorText;
 		
 		const renderInput = () => {
 			switch (type) {
@@ -56,7 +52,6 @@ export const Input = memo(forwardRef<HTMLInputElement | HTMLSelectElement | HTML
 							ref={ref as ForwardedRef<HTMLSelectElement>}
 							className={classnames(cls.input, className, {[cls.error]: isError})}
 							{...(register && register(name, {required: isRequired ? errorText : false}))}
-							onChange={onChange}
 						>
 							{options?.map(option => (
 								<option key={option.value} value={option.value}>
@@ -84,7 +79,6 @@ export const Input = memo(forwardRef<HTMLInputElement | HTMLSelectElement | HTML
 								value={option.value}
 								className={classnames(cls.input, {[cls.error]: isError})}
 								{...(register && register(name, {required: isRequired}))}
-								onChange={onChange}
 							/>
 							{option.label}
 						</label>
@@ -96,10 +90,16 @@ export const Input = memo(forwardRef<HTMLInputElement | HTMLSelectElement | HTML
 							ref={ref as ForwardedRef<HTMLInputElement>}
 							className={classnames(cls.input, className, {[cls.error]: isError})}
 							type={type}
-							value={value}
-							placeholder={isError ? errorText : placeholder}
-							{...(register && register(name, {required: isRequired ? errorText : false}))}
-							onChange={onChange}
+							placeholder={placeholder}
+							{...register(name, {
+								required: isRequired ? errorText : false,
+								...(type === 'tel' ? {
+									pattern: {
+										value: /^\d+$/,
+										message: "Номер телефона должен содержать только цифры"
+									}
+								} : {})
+							})}
 						/>
 					);
 			}
@@ -107,9 +107,10 @@ export const Input = memo(forwardRef<HTMLInputElement | HTMLSelectElement | HTML
 		
 		return (
 			<label className={cls.label}>
-				{label && <p className={cls.subtitle}>{label}</p>}
+				{label && <span className={cls.subtitle}>{label}</span>}
+				{isError && <span className={cls.errorText}>— {errorMessage}</span>}
 				{renderInput()}
 			</label>
 		);
 	}
-));
+);

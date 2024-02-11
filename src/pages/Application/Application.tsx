@@ -31,7 +31,9 @@ const Application: FC = () => {
 		register,
 		handleSubmit,
 		formState: {errors},
+		reset,
 	} = useForm<Inputs>({
+		mode: 'onBlur',
 		defaultValues: {
 			mainInput: mainInputValue,
 		}
@@ -55,6 +57,7 @@ const Application: FC = () => {
 			if (response.data.success) {
 				setIsLoading(false)
 				alert('Запрос успешно отправлен!');
+				reset();
 			}
 		} catch (error) {
 			console.error(error);
@@ -98,7 +101,7 @@ const Application: FC = () => {
 						name={'phone'}
 						label={'Телефон'}
 						placeholder={'89194121355'}
-						errorText={'Некорректный номер телефона'}
+						errorText={'Введите номер телефона'}
 						register={register}
 						errors={errors}
 						type={'tel'}
@@ -123,14 +126,13 @@ const Application: FC = () => {
 							})}
 							className={classnames(cls.checkbox, {[cls.error]: errors.checkbox})}
 							type="checkbox"
-							checked={true}
 						/>
 						<span>
 					Согласен на обработку персональных данных в соответствии с <Link
 							to="/politic">Политикой конфиденциальности</Link>
 				</span>
 					</label>
-					{errors.checkbox && <p className={cls.errorText + ' ' + cls.checkboxEroor}>Примите оферту</p>}
+					{errors.checkbox && <p className={classnames(cls.errorText, cls.checkboxError)}>Примите оферту</p>}
 				</div>
 				
 				<Button isLoading={isLoading} type={'submit'}>

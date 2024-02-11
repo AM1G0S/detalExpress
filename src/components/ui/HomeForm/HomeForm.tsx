@@ -9,7 +9,7 @@ import {Button} from "../Button/Button";
 import {Input} from "../Input/Input";
 import {useNavigate} from "react-router-dom";
 
-import cls from "./FormCheck.module.scss";
+import cls from "./HomeForm.module.scss";
 
 type Inputs = {
 	mainInput: string
@@ -22,9 +22,9 @@ const inputPlaceholders: string[] = [
 	'Укажите ГОС-номер'
 ];
 
-export const FormCheck: FC = memo(() => {
+export const HomeForm: FC = memo(() => {
 	const {register, handleSubmit, watch, formState: {errors}} = useForm<Inputs>({
-		mode: 'onSubmit',
+		mode: 'onBlur',
 	});
 	const navigate = useNavigate();
 	const dispatch = useDispatch<AppDispatch>();
@@ -71,9 +71,12 @@ export const FormCheck: FC = memo(() => {
 					<Button className={cls.button} type={'submit'}>
 						Отправить заявку
 					</Button>
+					
+					<p className={cls.text}>Менеджер ответит в течении 3-10 минут</p>
 				</form>
-			</div>
 			
+			</div>
+		
 		</div>
 	);
 });
