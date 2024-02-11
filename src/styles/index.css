@@ -57,7 +57,7 @@ h1 {
 h2 {
 	font-weight: 600;
 	font-size: 28px;
-	line-height: 30px;
+	line-height: 1.1;
 }
 
 a {
@@ -85,7 +85,6 @@ input[type =checkbox] {
 	padding: 0 20px;
 	margin: 0 auto;
 	position: relative;
-	z-index: 2;
 }
 
 .content {
@@ -93,20 +92,20 @@ input[type =checkbox] {
 	padding-top: 84px;
 }
 
-.separator {
-	position: relative;
-	
-	&::before {
-		content: "";
-		position: absolute;
-		bottom: -150px;
-		left: -100%;
-		right: 0;
-		height: 100px;
-		width: 1000%;
-		background-image: url(/src/assets/img/traces2.png);
-		object-fit: contain;
-		background-repeat: round;
-		z-index: -1;
-	}
-}
+/*.separator {*/
+/*	position: relative;*/
+/*	*/
+/*	&::before {*/
+/*		content: "";*/
+/*		position: absolute;*/
+/*		bottom: -150px;*/
+/*		left: -100%;*/
+/*		right: 0;*/
+/*		height: 100px;*/
+/*		width: 1000%;*/
+/*		background-image: url(/src/assets/img/traces2.png);*/
+/*		object-fit: contain;*/
+/*		background-repeat: round;*/
+/*		z-index: -1;*/
+/*	}*/
+/*}*/

@@ -1,0 +1,51 @@
+.accordion {
+	border: none;
+}
+
+.item {
+	padding: 20px 0 0 0;
+	border-bottom: 1px solid var(--grey-color);
+}
+
+.title {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	gap: 40px;
+	margin-bottom: 20px;
+	text-align: left;
+	font-size: 18px;
+	font-weight: 700;
+	cursor: pointer;
+	
+	@media (max-width: 660px) {
+		font-size: 16px;
+	}
+}
+
+.description {
+	display: grid;
+	grid-template-rows: 0fr;
+	overflow: hidden;
+	color: var(--green-color);
+	transition: 0.5s;
+	
+	p {
+		min-height: 0;
+		visibility: hidden;
+		transition: visibility 0.5s;
+	}
+	
+	@media (max-width: 660px) {
+		font-size: 14px;
+	}
+}
+
+.expanded {
+	grid-template-rows: 1fr;
+	margin-bottom: 20px;
+	
+	p {
+		visibility: visible;
+	}
+}
