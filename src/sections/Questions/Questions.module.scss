@@ -1,8 +1,6 @@
 .questions {
-	position: relative;
-	gap: 40px;
-	padding-bottom: 85px;
 	overflow: hidden;
+	gap: 40px;
 	
 	&::before {
 		content: '';
@@ -48,19 +46,11 @@
 	@media (max-width: 660px) {
 		flex-direction: column;
 	}
-}
-
-.title {
-	font-size: 48px;
-	font-weight: 800;
 	
-	span {
-		display: block;
-		color: var(--accent-color);
-	}
-	
-	@media (max-width: 660px) {
-		font-size: 36px;
+	h2 {
+		span {
+			display: block;
+		}
 	}
 }
 

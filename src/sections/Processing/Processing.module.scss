@@ -1,0 +1,37 @@
+.processing {
+
+}
+
+.steps {
+	display: flex;
+	flex-direction: column;
+	gap: 50px;
+	
+	@media (max-width: 480px) {
+		gap: 30px;
+	}
+	
+	& > div {
+		max-width: 500px;
+		flex: 1 0 110px;
+		
+		&:nth-child(even) {
+			margin-left: auto;
+		}
+	}
+}
+
+.title {
+	margin-bottom: 30px;
+}
+
+.imgBox {
+	@media (max-width: 991px) {
+		display: none;
+	}
+}
+
+.img {
+	max-width: 450px;
+	filter: drop-shadow(0px 120px 40px #d6d6d6);
+}

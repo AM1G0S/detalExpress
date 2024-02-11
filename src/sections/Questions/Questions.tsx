@@ -28,14 +28,16 @@ const questions = [
 
 export const Questions: FC = memo(() => {
 	return (
-		<div className={classnames(cls.questions, styles.wrapper)}>
-			<div className={styles.inner}>
-				<img className={cls.img} src={questionsImg} alt="Question img"/>
+		<section className={classnames(styles.section, cls.questions)}>
+			<div className={classnames(styles.wrapper)}>
+				<div className={styles.inner}>
+					<img className={cls.img} src={questionsImg} alt="Question img"/>
+				</div>
+				<div className={styles.inner}>
+					<h2 className={styles.title}><span>Ответы</span> на частые вопросы</h2>
+					<Accordion questions={questions}/>
+				</div>
 			</div>
-			<div className={styles.inner}>
-				<h2 className={cls.title}><span>Ответы</span> на частые вопросы</h2>
-				<Accordion questions={questions}/>
-			</div>
-		</div>
+		</section>
 	)
 })
