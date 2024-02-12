@@ -67,8 +67,8 @@ export const ReviewsSlider = () => {
 		speed: 500,
 		arrows: false,
 		adaptiveHeight: true,
-		appendDots: dots => <ul>{dots}</ul>,
-		customPaging: i => (
+		appendDots: (dots: any) => <ul>{dots}</ul>,
+		customPaging: () => (
 			<div className="ft-slick__dots--custom">
 				<div className="loading" />
 			</div>
