@@ -2,6 +2,7 @@ import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Review } from '../Review/Review';
+declare module 'react-slick';
 
 import cls from './ReviewsSlider.module.scss'
 
