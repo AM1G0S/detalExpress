@@ -1,0 +1,47 @@
+
+:global {
+	.slick-slide {
+		padding: 0 10px;
+	}
+	
+	/* Dots */
+	.slick-dots {
+		position: static;
+		margin-top: 30px;
+	}
+	
+	.ft-slick__dots--custom {
+		position: relative;
+		height: 8px;
+		width: 14px;
+		background-color: #e5e7e9;
+		border-radius: 4px;
+	}
+	
+	.slick-dots li {
+		width: 14px;
+		margin: 0 2px;
+		transition: width 0.3s ease-in-out;
+	}
+	
+	.slick-dots .slick-active {
+		width: 56px;
+		transition: width 0.3s ease-in-out;
+	}
+	
+	.slick-dots .slick-active .ft-slick__dots--custom {
+		width: 56px;
+	}
+	
+	.slick-active .loading {
+		width: 0;
+		height: 8px;
+		animation: loading 5s ease-in;
+		background-image: linear-gradient(270deg, #4fd15a, #03ac0e);
+		display: inline-block;
+		position: absolute;
+		top: 0;
+		left: 0;
+		border-radius: 4px;
+	}
+}
