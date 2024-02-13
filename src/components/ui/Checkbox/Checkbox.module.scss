@@ -36,9 +36,8 @@
 		width: 12px;
 		height: 12px;
 		border-radius: 3px;
-		border: 1px solid #3BB698;
-		background: #fff;
-		background: #3BB698;
+		border: 1px solid var(--green-color);
+		background: var(--green-color);
 		transition: .3s;
 		transform: scale(0);
 	}

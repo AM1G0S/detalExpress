@@ -5,17 +5,21 @@ import {Link} from "react-router-dom";
 import {Button} from "../Button/Button.tsx";
 import {Checkbox} from "../Checkbox/Checkbox.tsx";
 import {Input} from "../Input/Input.tsx";
-import cls from "./LoginFrom.module.scss"
+import cls from "./LoginFrom.module.scss";
 
 type Inputs = {
-	mainInput: string | number
-	replacement: string
-	name: string
-	phone: number
-	checkbox: boolean
+	mainInput: string | number;
+	replacement: string;
+	name: string;
+	phone: number;
+	checkbox: boolean;
+};
+
+interface IProps {
+	variant: 'login' | 'register';
 }
 
-export const LoginFrom: FC = memo(() => {
+export const LoginFrom: FC<IProps> = memo(({variant}) => {
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 	
 	const {
@@ -25,23 +29,26 @@ export const LoginFrom: FC = memo(() => {
 		reset,
 	} = useForm<Inputs>({
 		mode: 'onBlur',
-	})
+	});
 	
 	const onSubmit: SubmitHandler<Inputs> = async (data) => {
 		try {
-			setIsLoading(true)
+			setIsLoading(true);
 			
-			const response = await axios.post('/api/login', {
+			// Здесь может быть изменен URL в зависимости от действия: регистрация или вход
+			const url = variant === 'login' ? '/api/login' : '/api/register';
+			const response = await axios.post(url, {
 				message: data,
 			});
+			
 			if (response.data.success) {
-				setIsLoading(false)
+				setIsLoading(false);
 				alert('Запрос успешно отправлен!');
 				reset();
 			}
 		} catch (error) {
 			console.error(error);
-			setIsLoading(false)
+			setIsLoading(false);
 			console.log('Ошибка при отправке сообщения');
 		}
 	};
@@ -67,19 +74,20 @@ export const LoginFrom: FC = memo(() => {
 				/>
 			</div>
 			
-			<div className={cls.check}>
-				<Checkbox
-					id={'loginFromCheckbox'}
-					label={'Запомнить меня'}
-					register={register}
-					error={errors.checkbox?.message}/>
-				
-				<Link className={cls.reset} to={'reset'}>Забыли пароль?</Link>
-			</div>
+			{variant === 'login' && (
+				<div className={cls.check}>
+					<Checkbox
+						id={'loginFromCheckbox'}
+						label={'Запомнить меня'}
+						register={register}
+					/>
+					<Link className={cls.reset} to={'reset'}>Забыли пароль?</Link>
+				</div>
+			)}
 			
 			<Button className={cls.btn} isLoading={isLoading} type={'submit'}>
-				Отправить запрос
+				{variant === 'login' ? 'Отправить запрос' : 'Зарегистрироваться'}
 			</Button>
 		</form>
-	)
-})
+	);
+});

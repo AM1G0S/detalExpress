@@ -1,5 +1,5 @@
 import {FC, memo, useState} from "react";
-import {Button, RegisterForm} from "../../components";
+import {Button} from "../../components";
 import {LoginFrom} from "../../components";
 
 import cls from "./Login.module.scss";
@@ -33,14 +33,10 @@ const Login: FC = memo(() => {
 				</Button>
 			</div>
 			
-			{
-				activeTab === 0 ? (
-					<LoginFrom/>
-				) : (
-					<RegisterForm/>
-				)
-			}
 			
+			<LoginFrom variant={activeTab === 0 ? "login" : "register"}/>
+		
+		
 		</section>
 	);
 });
