@@ -124,6 +124,7 @@ const Application: FC = () => {
 							id="myCheckbox"
 							register={register}
 							error={errors.checkbox?.message}
+							className={cls.checkbox}
 						/>
 						<span>
 					Согласен на обработку персональных данных в соответствии с <Link

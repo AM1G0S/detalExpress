@@ -6,10 +6,12 @@ import cls from './Checkbox.module.scss'
 interface CheckboxProps {
 	id: string;
 	register: Function;
-	error?: string;
+	error?: string | undefined;
+	label?: string;
+	className?: string;
 }
 
-export const Checkbox: FC<CheckboxProps> = memo(({id, register, error}) => {
+export const Checkbox: FC<CheckboxProps> = memo(({id, register, error, label, className = ''}) => {
 	return (
 		<div className={cls.inner}>
 			<input
@@ -21,7 +23,8 @@ export const Checkbox: FC<CheckboxProps> = memo(({id, register, error}) => {
 				type="checkbox"
 			/>
 			
-			<label className={classnames(cls.label, {[cls.inputError]: error})} htmlFor={id}>
+			<label className={classnames(cls.label, {[className]: className, [cls.inputError]: error})} htmlFor={id}>
+				{label}
 			</label>
 		</div>
 	);

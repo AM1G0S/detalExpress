@@ -70,6 +70,12 @@ export const Input = forwardRef<HTMLInputElement | HTMLSelectElement | HTMLTextA
 										value: /^\d+$/,
 										message: "Номер телефона должен содержать только цифры"
 									}
+								} : {}),
+								...(type === 'email' ? {
+									pattern: {
+										value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+										message: "Неверный формат (пример: email@mail.ru)"
+									}
 								} : {})
 							})}
 						/>

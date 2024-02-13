@@ -56,9 +56,12 @@
 }
 
 .checkbox {
-	accent-color: var(--accent-color);
-	width: 44px;
-	height:44px;
+	&::before,
+	&::after {
+		top: 50%;
+		left: 50%;
+		translate: -50% -50%;
+	}
 }
 
 .checkboxError {
