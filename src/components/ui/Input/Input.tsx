@@ -11,7 +11,7 @@ interface Option {
 }
 
 interface InputProps {
-	type?: 'text' | 'checkbox' | 'radio' | 'select' | 'tel' | 'textarea';
+	type?: 'text' | 'textarea' | 'tel' | 'email' | 'password';
 	placeholder?: string;
 	label?: string;
 	isRequired?: boolean;
@@ -45,21 +45,6 @@ export const Input = forwardRef<HTMLInputElement | HTMLSelectElement | HTMLTextA
 		
 		const renderInput = () => {
 			switch (type) {
-				case 'select':
-					return (
-						<select
-							{...rest}
-							ref={ref as ForwardedRef<HTMLSelectElement>}
-							className={classnames(cls.input, className, {[cls.error]: isError})}
-							{...(register && register(name, {required: isRequired ? errorText : false}))}
-						>
-							{options?.map(option => (
-								<option key={option.value} value={option.value}>
-									{option.label}
-								</option>
-							))}
-						</select>
-					);
 				case 'textarea':
 					return (
 						<textarea
@@ -70,19 +55,6 @@ export const Input = forwardRef<HTMLInputElement | HTMLSelectElement | HTMLTextA
 							{...(register && register(name, {required: isRequired ? errorText : false}))}
 						/>
 					);
-				case 'radio':
-					return options?.map(option => (
-						<label key={option.value}>
-							<input
-								type="radio"
-								name={name}
-								value={option.value}
-								className={classnames(cls.input, {[cls.error]: isError})}
-								{...(register && register(name, {required: isRequired}))}
-							/>
-							{option.label}
-						</label>
-					));
 				default:
 					return (
 						<input

@@ -59,6 +59,7 @@ export const ReviewsSlider = () => {
 		dots: true,
 		autoplay: true,
 		autoplaySpeed: 5000,
+		loop: true,
 		infinite: true,
 		centerMode: true,
 		slidesToShow: 3,

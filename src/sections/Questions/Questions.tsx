@@ -28,7 +28,7 @@ const questions = [
 
 export const Questions: FC = memo(() => {
 	return (
-		<section className={classnames(styles.section, cls.questions)}>
+		<section id={'faq'} className={classnames(styles.section, cls.questions)}>
 			<div className={classnames(styles.wrapper, cls.wrapper)}>
 				<div className={styles.inner}>
 					<img className={cls.img} src={questionsImg} alt="Question img"/>

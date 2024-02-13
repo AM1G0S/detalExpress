@@ -6,7 +6,7 @@ import cls from "../Reviews/Reviews.module.scss";
 
 export const Reviews = memo(() => {
 	return (
-		<section className={classnames(styles.section, cls.reviews)}>
+		<section id={'reviews'} className={classnames(styles.section, cls.reviews)}>
 			<h2 className={classnames(styles.title, cls.title)}><span>Нам</span> доверяют</h2>
 			
 			<ReviewsSlider/>

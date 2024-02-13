@@ -4,7 +4,7 @@ import {FC, useState} from "react";
 import {SubmitHandler, useForm} from "react-hook-form";
 import {useSelector} from "react-redux";
 import {Link} from "react-router-dom";
-import {Input} from "../../components";
+import {Checkbox, Input} from "../../components";
 import {DeliveryModal} from "../../components";
 import {Button} from "../../components";
 import {RootState} from "../../redux/store.ts";
@@ -120,17 +120,15 @@ const Application: FC = () => {
 				
 				<div>
 					<label className={cls.agree}>
-						<input
-							{...register("checkbox", {
-								required: 'Это поле обязательно к заполнению'
-							})}
-							className={classnames(cls.checkbox, {[cls.error]: errors.checkbox})}
-							type="checkbox"
+						<Checkbox
+							id="myCheckbox"
+							register={register}
+							error={errors.checkbox?.message}
 						/>
 						<span>
 					Согласен на обработку персональных данных в соответствии с <Link
 							to="/politic">Политикой конфиденциальности</Link>
-				</span>
+						</span>
 					</label>
 					{errors.checkbox && <p className={classnames(cls.errorText, cls.checkboxError)}>Примите оферту</p>}
 				</div>
