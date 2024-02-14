@@ -9,4 +9,5 @@ const firebaseConfig = {
     appId: import.meta.env.VITE_FIREBASE_API_APP_ID,
 };
 
+// @ts-ignore
 const app = initializeApp(firebaseConfig);

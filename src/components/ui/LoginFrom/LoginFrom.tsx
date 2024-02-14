@@ -30,7 +30,6 @@ export const LoginFrom: FC<IProps> = memo(({variant}) => {
 		register,
 		handleSubmit,
 		formState: {errors},
-		reset,
 		watch,
 	} = useForm<Inputs>({
 		mode: 'onBlur',
