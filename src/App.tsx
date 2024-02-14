@@ -5,6 +5,7 @@ import MainLayout from "./components/loyaut/MainLayout.tsx";
 
 const Application = lazy(() => import('./pages/Application/Application'));
 const Login = lazy(() => import('./pages/Login/Login'));
+const Profile = lazy(() => import('./pages/Profile/Profile'));
 
 const App: FC = () => {
 	
@@ -14,10 +15,10 @@ const App: FC = () => {
 				<Route path={"/"} element={<MainLayout/>}>
 					<Route path="" element={<Home/>}/>
 					<Route
-						path="blog"
+						path="profile"
 						element={
 							<Suspense fallback={<h2>Загрузка...</h2>}>
-								<h1>В разработке...</h1>
+								<Profile></Profile>
 							</Suspense>
 						}
 					/>

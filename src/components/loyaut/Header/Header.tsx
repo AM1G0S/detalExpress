@@ -1,8 +1,6 @@
 import {FC, memo} from "react";
-import {useDispatch} from "react-redux";
 import {Link} from "react-router-dom";
 import {useAuth} from "../../../hooks/use-auth.ts";
-import {removeUser} from "../../../redux/slices/userSlice.ts";
 
 import cls from "./Header.module.scss";
 import logoImg from "../../../assets/img/logo.png";
@@ -13,7 +11,6 @@ interface HeaderProps {
 export const Header: FC = memo((props: HeaderProps) => {
 	const {} = props;
 	const {isAuth} = useAuth();
-	const dispatch = useDispatch();
 	
 	return (
 		<header className={cls.header}>
@@ -24,13 +21,10 @@ export const Header: FC = memo((props: HeaderProps) => {
 				<div className={cls.menu}>
 					<ul className={cls.menuList}>
 						<li className={cls.menuItem}>
-							<Link to={"/tariffs"}>Тарифы</Link>
-						</li>
-						<li className={cls.menuItem}>
 							<a href={'#reviews'}>Отзывы</a>
 						</li>
 						<li className={cls.menuItem}>
-							<Link to={"/blog"}>Блог</Link>
+							<a href={'#process'}>Этапы оформления</a>
 						</li>
 						<li className={cls.menuItem}>
 							<a href={'#faq'}>Ответы на вопросы</a>
@@ -43,7 +37,9 @@ export const Header: FC = memo((props: HeaderProps) => {
 				</div>
 				{
 					isAuth ? (
-						<button onClick={() => dispatch(removeUser())}>Выйти</button>
+						<>
+							<Link to={'/profile'}>Профиль</Link>
+						</>
 					) : (
 						<Link className={cls.profile} to={"/login"}>
 							Войти

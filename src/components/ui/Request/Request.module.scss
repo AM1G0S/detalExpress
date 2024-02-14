@@ -1,0 +1,62 @@
+.request {
+	padding: 15px 20px 10px 20px;
+	border-radius: 10px;
+	background-color: var(--gray-color);
+}
+
+.top,
+.bottom {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	gap: 5px;
+}
+
+.top {
+	margin-bottom: 10px;
+}
+
+.title {
+	font-size: 22px;
+	font-weight: 500;
+	
+	@media (max-width: 660px) {
+		font-size: 16px;
+	}
+}
+
+.requestId {
+	font-size: 20px;
+	
+	@media (max-width: 660px) {
+		font-size: 16px;
+	}
+}
+
+.body {
+	margin-bottom: 7px;
+	
+	@media (max-width: 660px) {
+		font-size: 14px;
+	}
+}
+
+.bottom {
+	font-size: 14px;
+}
+
+.address,
+.requestTime{
+	display: flex;
+	align-items: center;
+	gap: 3px;
+}
+
+.locationIcon {
+	width: 20px;
+}
+
+.dateIcon {
+	width: 24px;
+}

@@ -41,7 +41,7 @@ const processingSteps = [
 
 export const Processing: FC = memo(() => {
 	return (
-		<section className={classnames(styles.section, cls.processing)}>
+		<section id={'process'} className={classnames(styles.section, cls.processing)}>
 			<h2 className={classnames(styles.title, cls.title)}><span>Этапы</span> оформления</h2>
 			
 			<div className={classnames(cls.questions, styles.wrapper)}>

@@ -19,7 +19,7 @@ export const Footer: FC = memo((props: HeaderProps) => {
 					<div>
 						<p className={cls.title}>Поддержка</p>
 						<a className={cls.email} href="mailto:avto.face@yandex.ru">avto.face@yandex.ru</a>
-						<p className={cls.greyColor}>с 07:00 до 00:00 МСК</p>
+						<p className={cls.grayColor}>с 07:00 до 00:00 МСК</p>
 					</div>
 					
 					<div className={classnames(cls.socials)}>
@@ -34,8 +34,8 @@ export const Footer: FC = memo((props: HeaderProps) => {
 					</div>
 					
 					<div className={cls.politic}>
-						<Link className={classnames(cls.greyColor, cls.link)} to="#">Политика обработки данных</Link>
-						<Link className={classnames(cls.greyColor, cls.link)} to="#">Пользовательское/Лицензионное соглашение</Link>
+						<Link className={classnames(cls.grayColor, cls.link)} to="#">Политика обработки данных</Link>
+						<Link className={classnames(cls.grayColor, cls.link)} to="#">Пользовательское/Лицензионное соглашение</Link>
 					</div>
 				</div>
 			</div>

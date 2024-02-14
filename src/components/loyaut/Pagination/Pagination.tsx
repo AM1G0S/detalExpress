@@ -8,10 +8,7 @@ interface paginationProps {
 }
 
 const pageNames: Record<string, string> = {
-	'/tariffs': 'Тарифы',
-	'/reviews': 'Отзывы',
-	'/blog': 'Блог',
-	'/faq': 'Вопросы',
+	'/profile': 'Личный кабинет',
 	'/contact-us': 'Контакты',
 	'/login': 'Вход',
 	'/register': 'Регистрация',
