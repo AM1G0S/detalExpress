@@ -6,6 +6,7 @@ import {PersistGate} from "redux-persist/integration/react";
 import App from './App.tsx'
 import './styles/index.css'
 import store, {persistor} from "./redux/store.ts";
+import './firebase.js';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
 	<BrowserRouter>

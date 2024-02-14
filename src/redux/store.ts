@@ -13,10 +13,12 @@ import storage from 'redux-persist/lib/storage'
 
 import application from './slices/applicationSlice'
 import pagination from './slices/paginationSlice'
+import user from './slices/userSlice'
 
 const rootReducer = combineReducers({
 	application,
-	pagination
+	pagination,
+	user
 })
 
 const persistConfig = {

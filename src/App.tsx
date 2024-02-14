@@ -3,10 +3,14 @@ import {Routes, Route} from "react-router-dom";
 import {Home} from "./pages/Home/Home";
 import MainLayout from "./components/loyaut/MainLayout.tsx";
 
+import {useAuth} from "./hooks/use-auth.ts";
+
 const Application = lazy(() => import('./pages/Application/Application'));
 const Login = lazy(() => import('./pages/Login/Login'));
 
 const App: FC = () => {
+	const {isAuth} = useAuth();
+	
 	return (
 		<>
 			<Routes>
@@ -15,7 +19,7 @@ const App: FC = () => {
 					<Route
 						path="blog"
 						element={
-							<Suspense fallback={<div>Загрузка...</div>}>
+							<Suspense fallback={<h2>Загрузка...</h2>}>
 								<h1>В разработке...</h1>
 							</Suspense>
 						}
@@ -23,7 +27,7 @@ const App: FC = () => {
 					<Route
 						path="contact-us"
 						element={
-							<Suspense fallback={<div>Загрузка...</div>}>
+							<Suspense fallback={<h2>Загрузка...</h2>}>
 								<h1>В разработке...</h1>
 							</Suspense>
 						}
@@ -31,15 +35,17 @@ const App: FC = () => {
 					<Route
 						path="application"
 						element={
-							<Suspense fallback={<div>Загрузка...</div>}>
-								<Application/>
+							<Suspense fallback={<h2>Загрузка...</h2>}>
+								{
+									isAuth ? <Application/> : <Login/>
+								}
 							</Suspense>
 						}
 					/>
 					<Route
 						path="/login"
 						element={
-							<Suspense fallback={<div>Загрузка...</div>}>
+							<Suspense fallback={<h2>Загрузка...</h2>}>
 								<Login/>
 							</Suspense>
 						}
@@ -47,7 +53,7 @@ const App: FC = () => {
 					<Route
 						path="*"
 						element={
-							<Suspense fallback={<div>Загрузка...</div>}>
+							<Suspense fallback={<h2>Загрузка...</h2>}>
 								<h1>Страницы не существует</h1>
 							</Suspense>
 						}

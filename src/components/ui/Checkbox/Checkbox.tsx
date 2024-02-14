@@ -9,15 +9,16 @@ interface CheckboxProps {
 	error?: string | undefined;
 	label?: string;
 	className?: string;
+	isRequired?: boolean;
 }
 
-export const Checkbox: FC<CheckboxProps> = memo(({id, register, error, label, className = ''}) => {
+export const Checkbox: FC<CheckboxProps> = memo(({id, register, error, label, className = '', isRequired}) => {
 	return (
 		<div className={cls.inner}>
 			<input
 				className={cls.input}
 				{...register("checkbox", {
-					required: "Это поле обязательно",
+					required: isRequired ? 'Это поле обязательно' : false
 				})}
 				id={id}
 				type="checkbox"

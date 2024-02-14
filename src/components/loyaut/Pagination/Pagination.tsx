@@ -16,7 +16,8 @@ const pageNames: Record<string, string> = {
 	'/login': 'Вход',
 	'/register': 'Регистрация',
 	'/application': 'Отправить запрос',
-	'/politic': 'Политика конфиденциальности'
+	'/politic': 'Политика конфиденциальности',
+	'/login/reset': 'Восстановление пароля',
 };
 
 export const Pagination: FC<paginationProps> = ({currentPage}) => {
