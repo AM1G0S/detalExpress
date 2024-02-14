@@ -1,10 +1,10 @@
-import axios from "axios";
 import {getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword} from "firebase/auth";
 import {FC, memo, useState} from "react";
 import {SubmitHandler, useForm} from "react-hook-form";
 import {useDispatch} from "react-redux";
 import {Link, useNavigate} from "react-router-dom";
 import {setUser} from "../../../redux/slices/userSlice.ts";
+import {StatusModal} from "../../modals/StatusModal/StatusModal.tsx";
 import {Button} from "../Button/Button.tsx";
 import {Checkbox} from "../Checkbox/Checkbox.tsx";
 import {Input} from "../Input/Input.tsx";
@@ -22,6 +22,7 @@ interface IProps {
 
 export const LoginFrom: FC<IProps> = memo(({variant}) => {
 	const [isLoading, setIsLoading] = useState<boolean>(false);
+	const [showError, setShowError] = useState<boolean>(false);
 	const navigate = useNavigate();
 	
 	const dispatch = useDispatch();
@@ -30,7 +31,6 @@ export const LoginFrom: FC<IProps> = memo(({variant}) => {
 		register,
 		handleSubmit,
 		formState: {errors},
-		watch,
 	} = useForm<Inputs>({
 		mode: 'onBlur',
 	});
@@ -42,11 +42,12 @@ export const LoginFrom: FC<IProps> = memo(({variant}) => {
 				dispatch(setUser({
 					email: user.email,
 					id: user.uid,
+					// @ts-ignore
 					token: user.accessToken,
 				}));
 				navigate('/');
 			})
-			.catch(console.error)
+			.catch(() => setShowError(true))
 			.finally(() => setIsLoading(false))
 	}
 	
@@ -57,11 +58,12 @@ export const LoginFrom: FC<IProps> = memo(({variant}) => {
 				dispatch(setUser({
 					email: user.email,
 					id: user.uid,
+					// @ts-ignore
 					token: user.accessToken,
 				}));
 				navigate('/');
 			})
-			.catch(console.error)
+			.catch(() => setShowError(true))
 			.finally(() => setIsLoading(false))
 	}
 	
@@ -84,6 +86,7 @@ export const LoginFrom: FC<IProps> = memo(({variant}) => {
 	};
 	
 	return (
+		<>
 		<form className={cls.form} onSubmit={handleSubmit(onSubmit)}>
 			<div className={cls.inputs}>
 				<Input
@@ -117,8 +120,17 @@ export const LoginFrom: FC<IProps> = memo(({variant}) => {
 			)}
 			
 			<Button className={cls.btn} isLoading={isLoading} type={'submit'}>
-				{variant === 'login' ? 'Отправить запрос' : 'Зарегистрироваться'}
+				{variant === 'login' ? 'Войти' : 'Зарегистрироваться'}
 			</Button>
 		</form>
+			
+			<StatusModal
+				isOpen={showError}
+				status={'error'}
+				title={'Ошибка!'}
+				text={'Не верный логин или пароль'}
+				onClose={() => setShowError(false)}
+			/>
+		</>
 	);
 });

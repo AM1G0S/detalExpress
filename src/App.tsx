@@ -3,13 +3,10 @@ import {Routes, Route} from "react-router-dom";
 import {Home} from "./pages/Home/Home";
 import MainLayout from "./components/loyaut/MainLayout.tsx";
 
-import {useAuth} from "./hooks/use-auth.ts";
-
 const Application = lazy(() => import('./pages/Application/Application'));
 const Login = lazy(() => import('./pages/Login/Login'));
 
 const App: FC = () => {
-	const {isAuth} = useAuth();
 	
 	return (
 		<>
@@ -37,7 +34,7 @@ const App: FC = () => {
 						element={
 							<Suspense fallback={<h2>Загрузка...</h2>}>
 								{
-									isAuth ? <Application/> : <Login/>
+									<Application/>
 								}
 							</Suspense>
 						}

@@ -1,0 +1,23 @@
+.status {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	
+	img {
+		width: 30px;
+		height: 30px;
+		margin-bottom: 20px;
+	}
+}
+
+.title {
+	font-weight: 800;
+	font-size: 36px;
+	padding: 0 0 20px 0;
+}
+
+.text {
+	font-size: 14px;
+	line-height: 1.5;
+}

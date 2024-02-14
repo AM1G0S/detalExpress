@@ -4,7 +4,7 @@
 	left: 0;
 	right: 0;
 	bottom: 0;
-	background-color: rgba(0, 0, 0, 0.5);
+	background-color: rgba(42,42,54,.75);
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -38,7 +38,6 @@
 	align-items: center;
 	justify-content: space-between;
 	padding-bottom: 8px;
-	border-bottom: 1px solid var(--grey-color);
 }
 
 .modalTitle {

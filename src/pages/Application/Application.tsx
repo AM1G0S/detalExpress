@@ -3,10 +3,11 @@ import classnames from "classnames";
 import {FC, useState} from "react";
 import {SubmitHandler, useForm} from "react-hook-form";
 import {useSelector} from "react-redux";
-import {Link} from "react-router-dom";
+import {Link, Navigate} from "react-router-dom";
 import {Checkbox, Input} from "../../components";
 import {DeliveryModal} from "../../components";
 import {Button} from "../../components";
+import {useAuth} from "../../hooks/use-auth.ts";
 import {RootState} from "../../redux/store.ts";
 
 import cls from "./Application.module.scss"
@@ -26,6 +27,8 @@ const Application: FC = () => {
 	
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 	const [isModalOpen, setIsModalOpen] = useState(false);
+	
+	const {isAuth} = useAuth();
 	
 	const {
 		register,
@@ -66,7 +69,7 @@ const Application: FC = () => {
 		}
 	};
 	
-	return (
+	return isAuth ? (
 		<>
 			<form className={cls.form} onSubmit={handleSubmit(onSubmit)}>
 				<Input
@@ -141,6 +144,8 @@ const Application: FC = () => {
 			
 			<DeliveryModal isOpen={isModalOpen} onClose={() => setIsModalOpen(!isModalOpen)}/>
 		</>
+	) : (
+		<Navigate to={'/login'}/>
 	)
 }
 
