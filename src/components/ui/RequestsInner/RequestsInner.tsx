@@ -4,6 +4,7 @@ import {db} from "../../../firebase";
 import {RootState} from "../../../redux/store";
 import {RequestType} from "../../../types";
 import {Request} from "../Request/Request";
+import {RequestSkeleton} from "../Request/Skeleton.tsx";
 import cls from "./RequestsInner.module.scss";
 import {useSelector} from "react-redux";
 
@@ -33,7 +34,10 @@ export const RequestsInner: FC = memo(() => {
 			
 			<div className={cls.requests}>
 				{isLoading ? (
-					<h3>Загрузка...</h3>
+					<>
+						<RequestSkeleton/>
+						<RequestSkeleton/>
+					</>
 				) : (
 					<>
 						{requests.length > 0 ? (
