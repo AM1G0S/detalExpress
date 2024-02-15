@@ -38,7 +38,7 @@ export const Header: FC = memo((props: HeaderProps) => {
 		<header className={cls.header}>
 			<div className={cls.inner}>
 				<Link to={"/"}>
-					<img src={logoImg} className={cls.logo}/>
+					<img src={logoImg} className={cls.logo} alt={'логотип'}/>
 				</Link>
 				<div className={cls.menu}>
 					<ul className={cls.menuList}>
@@ -71,8 +71,8 @@ export const Header: FC = memo((props: HeaderProps) => {
 									</svg>
 								</div>
 								<div className={classnames(cls.profileMenu, menuActive ? cls.show : '')}>
-									<Link to={"/profile"}>Мои заказы</Link>
-									<Link to={"/profile"}>Мои профиль</Link>
+									<Link to={"/profile#requests"}>Мои заказы</Link>
+									<Link to={"/profile#settings"}>Мои профиль</Link>
 									<Link to={"/profile"} onClick={() => {
 										dispatch(removeUser());
 										navigate('/');

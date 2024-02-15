@@ -1,6 +1,6 @@
-import {FC, memo, useState} from "react";
+import {FC, memo, useEffect, useState} from "react";
 import {useDispatch} from "react-redux";
-import {Navigate, useNavigate} from "react-router-dom";
+import {Navigate, useLocation, useNavigate} from "react-router-dom";
 import {Button, RequestsInner, UserProfile} from "../../components";
 import {useAuth} from "../../hooks/use-auth.ts";
 import {removeUser} from "../../redux/slices/userSlice.ts";
@@ -15,6 +15,13 @@ const Profile: FC = memo(() => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const {isAuth} = useAuth();
+	const currentPath = useLocation().hash.slice(1);
+	
+	useEffect(() => {
+		if(currentPath) {
+			setActiveSection(currentPath);
+		}
+	}, [currentPath]);
 	
 	return isAuth ? (
 		<div className={cls.wrapper}>
