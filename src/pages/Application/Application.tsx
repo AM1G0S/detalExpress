@@ -1,12 +1,14 @@
 import axios from "axios";
 import classnames from "classnames";
+import {addDoc, collection, serverTimestamp} from "firebase/firestore";
 import {FC, useState} from "react";
 import {SubmitHandler, useForm} from "react-hook-form";
 import {useSelector} from "react-redux";
 import {Link, Navigate} from "react-router-dom";
-import {Checkbox, Input} from "../../components";
+import {Checkbox, Input, StatusModal} from "../../components";
 import {DeliveryModal} from "../../components";
 import {Button} from "../../components";
+import {db} from "../../firebase.ts";
 import {useAuth} from "../../hooks/use-auth.ts";
 import {RootState} from "../../redux/store.ts";
 
@@ -24,9 +26,12 @@ const Application: FC = () => {
 	const mainInputValue = useSelector((state: RootState) => state.application.mainInput)
 	const deliveryCity = useSelector((state: RootState) => state.application.delivery);
 	const deliveryAddress = useSelector((state: RootState) => state.application.address);
+	const userId = useSelector((state: RootState) => state.user.id);
 	
 	const [isLoading, setIsLoading] = useState<boolean>(false);
-	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+	const [isRequestModal, setIsRequestModal] = useState<boolean>(false);
+	const [isRequestStatus, setIsRequestStatus] = useState<'success' | 'error'>('error');
 	
 	const {isAuth} = useAuth();
 	
@@ -46,6 +51,15 @@ const Application: FC = () => {
 		try {
 			setIsLoading(true)
 			
+			// @ts-ignore
+			const docRef = await addDoc(collection(db, "requests"), {
+				userId: userId,
+				title: data.mainInput,
+				text: data.replacement,
+				address: `${deliveryCity} - ${deliveryAddress}`,
+				time: serverTimestamp(),
+			});
+			
 			const message = `<b>Заявка с сайта</b>\n\n` +
 				`<b>Номер или марка машины:</b>\n${data.mainInput}\n` +
 				`<b>Список запчастей:</b>\n${data.replacement || "Не указано"}\n` +
@@ -57,15 +71,19 @@ const Application: FC = () => {
 				message: message,
 				parse_mode: 'html'
 			});
+			
 			if (response.data.success) {
 				setIsLoading(false)
-				alert('Запрос успешно отправлен!');
+				setIsRequestStatus('success');
+				setIsRequestModal(true)
 				reset();
 			}
+			
 		} catch (error) {
-			console.error(error);
 			setIsLoading(false)
-			console.log('Ошибка при отправке сообщения');
+			setIsRequestStatus('error');
+			setIsRequestModal(true)
+			console.log('Ошибка при отправке сообщения: ', error);
 		}
 	};
 	
@@ -128,6 +146,7 @@ const Application: FC = () => {
 							register={register}
 							error={errors.checkbox?.message}
 							className={cls.checkbox}
+							isRequired={true}
 						/>
 						<span>
 					Согласен на обработку персональных данных в соответствии с <Link
@@ -143,6 +162,20 @@ const Application: FC = () => {
 			</form>
 			
 			<DeliveryModal isOpen={isModalOpen} onClose={() => setIsModalOpen(!isModalOpen)}/>
+			
+			<StatusModal
+				isOpen={isRequestModal}
+				status={isRequestStatus}
+				title={
+					isRequestStatus === 'error' ? 'Ошибка!' : 'Спасибо!'
+				}
+				text={
+					isRequestStatus === 'error' ?
+						'Ваш запрос не отправлен, повторите попытку позже.' :
+						'Ваш запрос успешно отправлен.'
+				}
+				onClose={() => setIsRequestModal(false)}
+			/>
 		</>
 	) : (
 		<Navigate to={'/login'}/>

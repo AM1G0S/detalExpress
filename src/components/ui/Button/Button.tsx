@@ -1,5 +1,5 @@
 import classnames from "classnames";
-import {FC, memo, ReactNode} from "react";
+import React, {FC, memo, ReactNode} from "react";
 import {Loader} from "../Loader/Loader";
 
 import cls from './Button.module.scss'
@@ -7,7 +7,7 @@ import cls from './Button.module.scss'
 interface ButtonProps {
 	type?: 'button' | 'submit';
 	children: ReactNode;
-	onClick?: () => void;
+	onClick?: ( event: React.MouseEvent<HTMLButtonElement>) => void;
 	variant?: "primary" | "secondary" | "select";
 	className?: string;
 	isLoading?: boolean;

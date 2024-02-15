@@ -1,4 +1,4 @@
-import React, {FC, memo} from "react";
+import React, { FC, memo, useEffect, useRef, useState } from 'react';
 
 import cls from "./Modal.module.scss";
 
@@ -9,31 +9,34 @@ interface ModalProps {
 	onClose: () => void;
 }
 
-export const Modal: FC<ModalProps> = memo(({children, isOpen, onClose, title}) => {
-	if (!isOpen) return null;
+export const Modal: FC<ModalProps> = memo(({ children, isOpen, onClose, title }) => {
+	const ModalRef = useRef<HTMLDivElement>(null);
+	const [justOpened, setJustOpened] = useState(false);
 	
-	const ModalRef = React.useRef<HTMLDivElement>(null)
-
-	React.useEffect(() => {
+	useEffect(() => {
+		if (isOpen) {
+			setJustOpened(true);
+			setTimeout(() => setJustOpened(false), 10);
+		}
+	}, [isOpen]);
+	
+	useEffect(() => {
 		const handleClickOutside = (event: MouseEvent) => {
-			const _event = event as MouseEvent & {
-				composedPath: () => Node[]
-			}
-			if (ModalRef.current && !_event.composedPath().includes(ModalRef.current)) {
+			if (justOpened) return; // Игнорируем клики сразу после открытия
+			if (ModalRef.current && !ModalRef.current.contains(event.target as Node)) {
 				onClose();
 			}
-		}
-
-		document.body.addEventListener('click', handleClickOutside)
-
+		};
+		
+		document.addEventListener('mousedown', handleClickOutside);
 		
 		return () => {
-			document.body.removeEventListener('click', handleClickOutside)
-		}
-	}, [])
+			document.removeEventListener('mousedown', handleClickOutside);
+		};
+	}, [onClose, justOpened]);
 	
 	return isOpen ? (
-		<div  className={cls.modal}>
+		<div className={cls.modal}>
 			<div ref={ModalRef} className={cls.modalWrapper}>
 				<div className={cls.modalTop}>
 					<h2 className={cls.modalTitle}>{title}</h2>

@@ -1,11 +1,8 @@
 export type RequestType = {
-	id?: number;
+	id: string | number;
+	userId?: string;
 	title: string;
 	text: string;
 	address: string;
 	time: string;
 };
-
-export interface RequestsProps {
-	requests: RequestType[];
-}
