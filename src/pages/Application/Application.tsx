@@ -56,7 +56,7 @@ const Application: FC = () => {
 				userId: userId,
 				title: data.mainInput,
 				text: data.replacement,
-				address: `${deliveryCity} - ${deliveryAddress}`,
+				address: `${deliveryCity} (${deliveryAddress})`,
 				time: serverTimestamp(),
 			});
 			
