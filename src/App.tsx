@@ -1,5 +1,6 @@
 import {FC, lazy, Suspense} from "react";
 import {Routes, Route} from "react-router-dom";
+import {useAuthStateListener} from "./hooks/use-auth.ts";
 import {Home} from "./pages/Home/Home";
 import MainLayout from "./components/loyaut/MainLayout.tsx";
 
@@ -8,6 +9,7 @@ const Login = lazy(() => import('./pages/Login/Login'));
 const Profile = lazy(() => import('./pages/Profile/Profile'));
 
 const App: FC = () => {
+	useAuthStateListener()
 	
 	return (
 		<>

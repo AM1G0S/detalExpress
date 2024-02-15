@@ -10,11 +10,7 @@ import cls from "./Header.module.scss";
 import logoImg from "../../../assets/img/logo.png";
 import profileIcon from '../../../assets/img/profile.svg'
 
-interface HeaderProps {
-}
-
-export const Header: FC = memo((props: HeaderProps) => {
-	const {} = props;
+export const Header: FC = memo(() => {
 	const [menuActive, setMenuActive] = useState(false);
 	const profileBtn = useRef<HTMLDivElement>(null);
 	
@@ -57,6 +53,7 @@ export const Header: FC = memo((props: HeaderProps) => {
 						<span className="cube"></span>
 					</ul>
 				</div>
+				
 				{
 					isAuth ? (
 						<>
@@ -71,7 +68,7 @@ export const Header: FC = memo((props: HeaderProps) => {
 									</svg>
 								</div>
 								<div className={classnames(cls.profileMenu, menuActive ? cls.show : '')}>
-									<Link to={"/profile#requests"}>Мои заказы</Link>
+									<Link to={"/profile#requests"}>Мои запросы</Link>
 									<Link to={"/profile#settings"}>Мои профиль</Link>
 									<Link to={"/profile"} onClick={() => {
 										dispatch(removeUser());

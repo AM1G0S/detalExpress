@@ -6,9 +6,9 @@ import {useAuth} from "../../hooks/use-auth.ts";
 import {removeUser} from "../../redux/slices/userSlice.ts";
 import cls from "./Profile.module.scss"
 
-import requestsIcon from '../../assets/img/request.svg'
-import profileIcon from '../../assets/img/profile.svg'
-import exitIcon from '../../assets/img/exit.svg'
+import requestsIcon from '../../assets/img/request.svg';
+import profileIcon from '../../assets/img/profile.svg';
+import exitIcon from '../../assets/img/exit.svg';
 
 const Profile: FC = memo(() => {
 	const [activeSection, setActiveSection] = useState('requests');

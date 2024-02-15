@@ -23,7 +23,7 @@ type Inputs = {
 }
 
 const Application: FC = () => {
-	const mainInputValue = useSelector((state: RootState) => state.application.mainInput)
+	const mainInputValue = useSelector((state: RootState) => state.application.mainInput);
 	const deliveryCity = useSelector((state: RootState) => state.application.delivery);
 	const deliveryAddress = useSelector((state: RootState) => state.application.address);
 	const userId = useSelector((state: RootState) => state.user.id);

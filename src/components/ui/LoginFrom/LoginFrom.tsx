@@ -24,7 +24,6 @@ export const LoginFrom: FC<IProps> = memo(({variant}) => {
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 	const [showError, setShowError] = useState<boolean>(false);
 	const navigate = useNavigate();
-	
 	const dispatch = useDispatch();
 	
 	const {
@@ -70,7 +69,6 @@ export const LoginFrom: FC<IProps> = memo(({variant}) => {
 	const onSubmit: SubmitHandler<Inputs> = async (data) => {
 		try {
 			setIsLoading(true);
-			// const url = variant === 'login' ? '/api/login' : '/api/register';
 			
 			if (variant === 'login') {
 				await handleLogin(data.email, data.password);
@@ -87,42 +85,42 @@ export const LoginFrom: FC<IProps> = memo(({variant}) => {
 	
 	return (
 		<>
-		<form className={cls.form} onSubmit={handleSubmit(onSubmit)}>
-			<div className={cls.inputs}>
-				<Input
-					name={'email'}
-					type={"email"}
-					label={'Email'}
-					placeholder={"Введите почту"}
-					register={register}
-					errors={errors}
-				/>
-				<Input
-					name={'password'}
-					type={"password"}
-					label={'Пароль'}
-					placeholder={"Введите пароль"}
-					register={register}
-					errors={errors}
-				/>
-			</div>
-			
-			{variant === 'login' && (
-				<div className={cls.check}>
-					<Checkbox
-						id={'loginFromCheckbox'}
-						label={'Запомнить меня'}
+			<form className={cls.form} onSubmit={handleSubmit(onSubmit)}>
+				<div className={cls.inputs}>
+					<Input
+						name={'email'}
+						type={"email"}
+						label={'Email'}
+						placeholder={"Введите почту"}
 						register={register}
-						isRequired={false}
+						errors={errors}
 					/>
-					<Link className={cls.reset} to={'reset'}>Забыли пароль?</Link>
+					<Input
+						name={'password'}
+						type={"password"}
+						label={'Пароль'}
+						placeholder={"Введите пароль"}
+						register={register}
+						errors={errors}
+					/>
 				</div>
-			)}
-			
-			<Button className={cls.btn} isLoading={isLoading} type={'submit'}>
-				{variant === 'login' ? 'Войти' : 'Зарегистрироваться'}
-			</Button>
-		</form>
+				
+				{variant === 'login' && (
+					<div className={cls.check}>
+						<Checkbox
+							id={'loginFromCheckbox'}
+							label={'Запомнить меня'}
+							register={register}
+							isRequired={false}
+						/>
+						<Link className={cls.reset} to={'reset'}>Забыли пароль?</Link>
+					</div>
+				)}
+				
+				<Button className={cls.btn} isLoading={isLoading} type={'submit'}>
+					{variant === 'login' ? 'Войти' : 'Зарегистрироваться'}
+				</Button>
+			</form>
 			
 			<StatusModal
 				isOpen={showError}
