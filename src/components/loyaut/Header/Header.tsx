@@ -1,16 +1,38 @@
-import {FC, memo} from "react";
-import {Link} from "react-router-dom";
+import classnames from "classnames";
+import {FC, memo, useEffect, useRef, useState} from "react";
+import {useDispatch} from "react-redux";
+import {Link, useNavigate} from "react-router-dom";
 import {useAuth} from "../../../hooks/use-auth.ts";
+import {removeUser} from "../../../redux/slices/userSlice.ts";
 
 import cls from "./Header.module.scss";
+
 import logoImg from "../../../assets/img/logo.png";
+import profileIcon from '../../../assets/img/profile.svg'
 
 interface HeaderProps {
 }
 
 export const Header: FC = memo((props: HeaderProps) => {
 	const {} = props;
+	const [menuActive, setMenuActive] = useState(false);
+	const profileBtn = useRef<HTMLDivElement>(null);
+	
+	useEffect(() => {
+		const handleClickOutside = (event: MouseEvent) => {
+			if (profileBtn.current && !profileBtn.current.contains(event.target as Node)) {
+				setMenuActive(false)
+			}
+		};
+		document.addEventListener('mousedown', handleClickOutside);
+		return () => {
+			document.removeEventListener('mousedown', handleClickOutside);
+		};
+	}, []);
+	
 	const {isAuth} = useAuth();
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
 	
 	return (
 		<header className={cls.header}>
@@ -38,7 +60,25 @@ export const Header: FC = memo((props: HeaderProps) => {
 				{
 					isAuth ? (
 						<>
-							<Link to={'/profile'}>Профиль</Link>
+							<div className={cls.profile} ref={profileBtn}>
+								<div className={cls.profileBtn} onClick={() => setMenuActive(!menuActive)}>
+									<img className={cls.icon} src={profileIcon} alt="иконка профиля"/>
+									<svg className={classnames(cls.icon, cls.arrowIcon, menuActive ? cls.show : '')} viewBox="0 0 9 5"
+									     fill="none" xmlns="http://www.w3.org/2000/svg">
+										<path fillRule="evenodd" clipRule="evenodd"
+										      d="M4.50122 3.03033L0.731158 0L0.00195312 1.06821L4.13662 4.39161C4.35321 4.5657 4.64923 4.5657 4.86582 4.39161L9.00049 1.06821L8.27128 0L4.50122 3.03033Z"
+										      fill="#2A2A36"></path>
+									</svg>
+								</div>
+								<div className={classnames(cls.profileMenu, menuActive ? cls.show : '')}>
+									<Link to={"/profile"}>Мои заказы</Link>
+									<Link to={"/profile"}>Мои профиль</Link>
+									<Link to={"/profile"} onClick={() => {
+										dispatch(removeUser());
+										navigate('/');
+									}}>Выход</Link>
+								</div>
+							</div>
 						</>
 					) : (
 						<Link className={cls.profile} to={"/login"}>
