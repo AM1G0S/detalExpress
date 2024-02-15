@@ -37,11 +37,11 @@ export const RequestsInner: FC = memo(() => {
 				) : (
 					<>
 						{requests.length > 0 ? (
-							requests.map((request) => {
+							requests.map((request, index) => {
 								// @ts-ignore
 								const formattedDate = request.time.toDate().toLocaleString();
 								return (
-									<Request key={request.id} {...request} id={request.id} time={formattedDate}/>
+									<Request key={request.id} {...request} id={index + 1} time={formattedDate}/>
 								);
 							})
 						) : (
