@@ -38,6 +38,10 @@ export const UserProfile: FC = memo(() => {
 	const navigate = useNavigate();
 	const userId = useSelector((state: RootState) => state.user.id);
 	
+	const navigateTo = useCallback((path: string) => {
+		navigate(path);
+	}, [navigate]);
+	
 	const {register, handleSubmit, formState: {errors}} = useForm<Inputs>({
 		mode: 'onBlur',
 	});
@@ -253,8 +257,8 @@ export const UserProfile: FC = memo(() => {
 				isOpen={isOpen}
 				status={status ? 'success' : 'error'}
 				onClose={() => {
-					navigate("/profile#profile");
 					setIsOpen(false)
+					navigateTo('/profile#profile');
 				}}
 			/>
 		</div>
