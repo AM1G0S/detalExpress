@@ -11,6 +11,7 @@ export const RequestSkeleton: FC = memo(() => {
 			if (window.innerWidth < 768) {
 				setDimensions({ height: 100 });
 			} else {
+				// @ts-ignore
 				setDimensions({ width: 900, height: 150 });
 			}
 		}
@@ -21,14 +22,13 @@ export const RequestSkeleton: FC = memo(() => {
 		return () => window.removeEventListener('resize', handleResize);
 	}, []);
 	
-	
 	return (
 		<ContentLoader
 			className={cls.request}
 			speed={1}
 			width={900}
 			height={dimensions.height}
-			viewBox={`0 0 100% ${dimensions.height}`}
+			viewBox={`0 0 1200 ${dimensions.height}`}
 			backgroundColor="#C59368"
 			foregroundColor="#ededed"
 		>

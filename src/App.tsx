@@ -3,6 +3,7 @@ import {Routes, Route} from "react-router-dom";
 import {useAuthStateListener} from "./hooks/use-auth.ts";
 import {Home} from "./pages/Home/Home";
 import MainLayout from "./components/loyaut/MainLayout.tsx";
+import {PasswordRecovery} from "./pages/PasswordRecovery/PasswordRecovery.tsx";
 
 const Application = lazy(() => import('./pages/Application/Application'));
 const Login = lazy(() => import('./pages/Login/Login'));
@@ -47,6 +48,14 @@ const App: FC = () => {
 						element={
 							<Suspense fallback={<h2>Загрузка...</h2>}>
 								<Login/>
+							</Suspense>
+						}
+					/>
+					<Route
+						path="login/reset"
+						element={
+							<Suspense fallback={<h2>Загрузка...</h2>}>
+								<PasswordRecovery/>
 							</Suspense>
 						}
 					/>

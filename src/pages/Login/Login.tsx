@@ -1,17 +1,20 @@
 import {FC, memo, useState} from "react";
+import {Navigate} from "react-router-dom";
 import {Button} from "../../components";
 import {LoginFrom} from "../../components";
+import {useAuth} from "../../hooks/use-auth.ts";
 
 import cls from "./Login.module.scss";
 
 const Login: FC = memo(() => {
 	const [activeTab, setActiveTab] = useState<number>(0);
+	const {isAuth} = useAuth();
 	
 	const handleTabClick = (index: number) => {
 		setActiveTab(index);
 	};
 	
-	return (
+	return isAuth ? <Navigate to={'/'}/> : (
 		<section className={cls.login}>
 			
 			<div className={cls.inputTabs}>

@@ -1,3 +1,4 @@
+import {getAuth, signOut } from "firebase/auth";
 import {FC, memo, useEffect, useState} from "react";
 import {useDispatch} from "react-redux";
 import {Navigate, useLocation, useNavigate} from "react-router-dom";
@@ -36,8 +37,11 @@ const Profile: FC = memo(() => {
 						Мой профиль
 					</li>
 					<li className={cls.sidebarItem} onClick={() => {
-						dispatch(removeUser());
-						navigate('/');
+						const auth = getAuth();
+						signOut(auth).then(() => {
+							dispatch(removeUser());
+							navigate('/');
+						})
 					}}>
 						<img className={cls.sidebarIcon} src={exitIcon} alt="иконка выхода"/>
 						Выход

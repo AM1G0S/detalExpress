@@ -1,4 +1,5 @@
 import classnames from "classnames";
+import {getAuth, signOut} from "firebase/auth";
 import {FC, memo, useEffect, useRef, useState} from "react";
 import {useDispatch} from "react-redux";
 import {Link, useNavigate} from "react-router-dom";
@@ -71,8 +72,11 @@ export const Header: FC = memo(() => {
 									<Link to={"/profile#requests"}>Мои запросы</Link>
 									<Link to={"/profile#settings"}>Мои профиль</Link>
 									<Link to={"/profile"} onClick={() => {
-										dispatch(removeUser());
-										navigate('/');
+										const auth = getAuth();
+										signOut(auth).then(() => {
+											dispatch(removeUser());
+											navigate('/');
+										})
 									}}>Выход</Link>
 								</div>
 							</div>
