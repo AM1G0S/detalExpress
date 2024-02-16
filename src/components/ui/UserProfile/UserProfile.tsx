@@ -3,7 +3,6 @@ import {useForm} from "react-hook-form";
 import {getAuth, updateEmail, updatePassword, sendEmailVerification} from "firebase/auth";
 import {doc, getDoc, updateDoc} from "firebase/firestore";
 import {useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom";
 import {db} from "../../../firebase";
 import {RootState} from "../../../redux/store";
 import {StatusModal} from "../../modals/StatusModal/StatusModal";
@@ -35,12 +34,7 @@ export const UserProfile: FC = memo(() => {
 	const [message, setMessage] = useState("");
 	const [isOpen, setIsOpen] = useState(false);
 	const auth = getAuth();
-	const navigate = useNavigate();
 	const userId = useSelector((state: RootState) => state.user.id);
-	
-	const navigateTo = useCallback((path: string) => {
-		navigate(path);
-	}, [navigate]);
 	
 	const {register, handleSubmit, formState: {errors}} = useForm<Inputs>({
 		mode: 'onBlur',
@@ -258,7 +252,7 @@ export const UserProfile: FC = memo(() => {
 				status={status ? 'success' : 'error'}
 				onClose={() => {
 					setIsOpen(false)
-					navigateTo('/profile#profile');
+					{status && setIsEditing(false)}
 				}}
 			/>
 		</div>
