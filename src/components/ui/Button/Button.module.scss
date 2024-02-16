@@ -33,6 +33,15 @@
 		color: var(--light-color);
 		background: var(--accent-color);
 	}
+	
+	&:hover {
+		color: var(--light-color);
+		background-color: var(--main-color);
+	}
+	
+	&.loading {
+		background: var(--main-color);
+	}
 }
 
 .select {

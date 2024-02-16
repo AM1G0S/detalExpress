@@ -1,8 +1,10 @@
-import {getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword} from "firebase/auth";
+import {getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
+import {doc, setDoc } from "firebase/firestore";
 import {FC, memo, useState} from "react";
 import {SubmitHandler, useForm} from "react-hook-form";
 import {useDispatch} from "react-redux";
 import {Link, useNavigate} from "react-router-dom";
+import {db} from "../../../firebase.ts";
 import {setUser} from "../../../redux/slices/userSlice.ts";
 import {StatusModal} from "../../modals/StatusModal/StatusModal.tsx";
 import {Button} from "../Button/Button.tsx";
@@ -51,19 +53,34 @@ export const LoginFrom: FC<IProps> = memo(({variant}) => {
 	}
 	
 	const handleSingUp = async (email: string, password: string) => {
-		const auth = getAuth();
-		createUserWithEmailAndPassword(auth, email, password)
-			.then(({user}) => {
-				dispatch(setUser({
-					email: user.email,
-					id: user.uid,
-					// @ts-ignore
-					token: user.accessToken,
-				}));
-				navigate('/');
-			})
-			.catch(() => setShowError(true))
-			.finally(() => setIsLoading(false))
+		try {
+			const auth = getAuth();
+			const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+			
+			if (auth.currentUser) {
+				await sendEmailVerification(auth.currentUser);
+			}
+			
+			const user = userCredential.user;
+			await setDoc(doc(db, "users", user.uid), {
+				userId: user.uid,
+				name: '',
+				lastName: '',
+				phone: '',
+				email: email
+			});
+			setIsLoading(false)
+			dispatch(setUser({
+				email: user.email,
+				id: user.uid,
+				// @ts-ignore
+				token: user.accessToken
+			}));
+			navigate('/');
+		} catch (error) {
+			setIsLoading(false)
+			setShowError(true)
+		}
 	}
 	
 	const onSubmit: SubmitHandler<Inputs> = async (data) => {

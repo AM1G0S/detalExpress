@@ -8,7 +8,7 @@ interface Option {
 }
 
 interface InputProps {
-	type?: 'text' | 'textarea' | 'tel' | 'email' | 'password';
+	type?: string;
 	placeholder?: string;
 	label?: string;
 	isRequired?: boolean;

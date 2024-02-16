@@ -2,6 +2,10 @@
 	font-size: 34px;
 	font-weight: 800;
 	margin-bottom: 20px;
+	
+	@media (max-width: 425px) {
+		font-size: 26px;
+	}
 }
 
 .subtitle {
@@ -19,4 +23,47 @@
 
 .password {
 	margin-bottom: 40px;
+}
+
+.profileBtn {
+	min-width: 250px;
+}
+
+.buttons {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+}
+
+.infoList {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	margin-bottom: 20px;
+}
+
+.infoItem {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	padding: 15px;
+	font-size: 20px;
+	border-radius: 5px;
+	background-color: #fafafa;
+}
+
+.itemLabel {
+	font-size: 22px;
+	font-weight: 500;
+	padding-bottom: 5px;
+	border-bottom: solid 1px var(--gray-color);
+}
+
+.verifyEmailBadge {
+	color: var(--accent-color);
+}
+
+.emailBtn {
+	padding: 15px 40px;
+	max-width: 300px;
 }
