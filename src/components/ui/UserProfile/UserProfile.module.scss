@@ -27,12 +27,17 @@
 
 .profileBtn {
 	min-width: 250px;
+	
+	@media (max-width: 480px) {
+		width: 100%;
+	}
 }
 
 .buttons {
 	display: flex;
 	align-items: center;
 	gap: 20px;
+	flex-wrap: wrap;
 }
 
 .infoList {
@@ -47,9 +52,14 @@
 	flex-direction: column;
 	gap: 10px;
 	padding: 15px;
-	font-size: 20px;
+	font-size: 18px;
 	border-radius: 5px;
 	background-color: #fafafa;
+	text-wrap: balance;
+	
+	@media (max-width: 480px) {
+		font-size: 16px;
+	}
 }
 
 .itemLabel {
@@ -57,10 +67,18 @@
 	font-weight: 500;
 	padding-bottom: 5px;
 	border-bottom: solid 1px var(--gray-color);
+	
+	@media (max-width: 480px) {
+		font-size: 18px;
+	}
 }
 
 .verifyEmailBadge {
 	color: var(--accent-color);
+	
+	@media (max-width: 480px) {
+		font-size: 14px;
+	}
 }
 
 .emailBtn {

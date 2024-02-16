@@ -45,7 +45,7 @@ export const UserProfile: FC = memo(() => {
 		if (user) {
 			setEmailVerified(user.emailVerified);
 		}
-	}, [auth, userData]);
+	}, [auth]);
 	
 	useEffect(() => {
 		const fetchRequests = async () => {
