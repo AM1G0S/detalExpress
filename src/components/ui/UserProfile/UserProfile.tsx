@@ -2,6 +2,7 @@ import {FC, memo, useCallback, useEffect, useState} from "react";
 import {useForm} from "react-hook-form";
 import {getAuth, updateEmail, updatePassword, sendEmailVerification} from "firebase/auth";
 import {doc, getDoc, updateDoc} from "firebase/firestore";
+import { FirebaseError } from "firebase/app";
 import {useSelector} from "react-redux";
 import {db} from "../../../firebase";
 import {RootState} from "../../../redux/store";
@@ -138,12 +139,12 @@ export const UserProfile: FC = memo(() => {
 			}
 		} catch (error) {
 			console.error("Ошибка при обновлении информации пользователя: ", error);
-			if (error.code === "auth/operation-not-allowed") {
-				setResponseState(false, "Пожалуйста, подтвердите вашу текущую электронную почту." + error.message);
-			} else if (error.code === "auth/requires-recent-login") {
+			if ((error as FirebaseError).code === "auth/operation-not-allowed") {
+				setResponseState(false, "Пожалуйста, подтвердите вашу текущую электронную почту." + (error as FirebaseError).message);
+			} else if ((error as FirebaseError).code === "auth/requires-recent-login") {
 				setResponseState(false, "Для выполнения этой операции необходимо недавнее вход в систему. Пожалуйста, войдите в систему и повторите попытку.");
 			} else {
-				setResponseState(false, "Ошибка при обновлении информации аутентификации: " + error.message);
+				setResponseState(false, "Ошибка при обновлении информации аутентификации: " + (error as FirebaseError).message);
 			}
 		}
 	}, [auth, userId, db]);
