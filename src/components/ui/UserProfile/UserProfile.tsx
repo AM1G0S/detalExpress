@@ -41,11 +41,15 @@ export const UserProfile: FC = memo(() => {
 	});
 	
 	useEffect(() => {
-		const user = auth.currentUser;
-		if (user) {
-			setEmailVerified(user.emailVerified);
-		}
-	}, [auth]);
+		const unsubscribe = auth.onAuthStateChanged(async (user) => {
+			if (user) {
+				setEmailVerified(user.emailVerified);
+			}
+		});
+		
+		return () => unsubscribe();
+	}, []);
+	
 	
 	useEffect(() => {
 		const fetchRequests = async () => {
@@ -71,7 +75,7 @@ export const UserProfile: FC = memo(() => {
 		setIsLoading(true)
 		if (user) {
 			await sendEmailVerification(user);
-			setResponseState(true, "Ссылка для верификации отправлена");
+			setResponseState(true, "Ссылка для верификации почты отправлена");
 			setIsLoading(false)
 			setIsOpen(true);
 		}
@@ -111,25 +115,38 @@ export const UserProfile: FC = memo(() => {
 		const user = auth.currentUser;
 		if (!user) return;
 		
-		const updateData = {
-			...(data.email && {email: data.email}),
-		};
-		
 		try {
+			// Проверяем, изменился ли email и является ли он валидным
 			if (data.email && data.email !== user.email) {
+				// Сначала обновляем электронную почту пользователя
 				await updateEmail(user, data.email);
+				
+				// Затем отправляем письмо с подтверждением на новый адрес
+				await sendEmailVerification(user);
+				
+				// Обновляем электронную почту в базе данных, если требуется
 				// @ts-ignore
-				await updateDoc(doc(db, "users", userId), updateData);
-				setResponseState(true, "Email обновлен! Пожалуйста, подтвердите свою почту.");
+				await updateDoc(doc(db, "users", userId), {email: data.email});
+				
+				setResponseState(true, "Email обновлен! Пожалуйста, подтвердите свою почту. Ссылка для подтверждения отправлена на ваш новый адрес электронной почты.");
 			}
+			
+			// Обновление пароля, если указан
 			if (data.password) {
 				await updatePassword(user, data.password);
 				setResponseState(true, "Пароль обновлен");
 			}
 		} catch (error) {
-			setResponseState(false, "Ошибка при обновлении информации аутентификации" + error);
+			console.error("Ошибка при обновлении информации пользователя: ", error);
+			if (error.code === "auth/operation-not-allowed") {
+				setResponseState(false, "Пожалуйста, подтвердите вашу текущую электронную почту." + error.message);
+			} else if (error.code === "auth/requires-recent-login") {
+				setResponseState(false, "Для выполнения этой операции необходимо недавнее вход в систему. Пожалуйста, войдите в систему и повторите попытку.");
+			} else {
+				setResponseState(false, "Ошибка при обновлении информации аутентификации: " + error.message);
+			}
 		}
-	}, [auth]);
+	}, [auth, userId, db]);
 	
 	const onSubmit = async (data: Inputs) => {
 		setIsLoading(true);
@@ -252,7 +269,9 @@ export const UserProfile: FC = memo(() => {
 				status={status ? 'success' : 'error'}
 				onClose={() => {
 					setIsOpen(false)
-					{status && setIsEditing(false)}
+					{
+						status && setIsEditing(false)
+					}
 				}}
 			/>
 		</div>
