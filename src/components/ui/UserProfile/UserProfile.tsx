@@ -140,7 +140,7 @@ export const UserProfile: FC = memo(() => {
 		} catch (error) {
 			console.error("Ошибка при обновлении информации пользователя: ", error);
 			if ((error as FirebaseError).code === "auth/operation-not-allowed") {
-				setResponseState(false, "Пожалуйста, подтвердите вашу текущую электронную почту." + (error as FirebaseError).message);
+				setResponseState(false, "Пожалуйста, подтвердите сначала вашу текущую электронную почту.");
 			} else if ((error as FirebaseError).code === "auth/requires-recent-login") {
 				setResponseState(false, "Для выполнения этой операции необходимо недавнее вход в систему. Пожалуйста, войдите в систему и повторите попытку.");
 			} else {
