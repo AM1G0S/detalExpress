@@ -32,7 +32,7 @@ export const HomeForm: FC = memo(() => {
 	const dispatch = useDispatch<AppDispatch>();
 	
 	const [isModalOpen, setIsModalOpen] = useState(false);
-	const [activeTab, setActiveTab] = useState<boolean | null>(0);
+	const [activeTab, setActiveTab] = useState<number | null>(0);
 	
 	const {isAuth} = useAuth();
 	
