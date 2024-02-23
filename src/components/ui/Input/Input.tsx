@@ -18,6 +18,7 @@ interface InputProps {
 	errors?: any;
 	options?: Option[];
 	errorText?: string;
+	defaultValue?: string | number | null;
 }
 
 export const Input = forwardRef<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement, InputProps>((
@@ -31,6 +32,7 @@ export const Input = forwardRef<HTMLInputElement | HTMLSelectElement | HTMLTextA
 		name,
 		errors,
 		options,
+		defaultValue,
 		errorText = 'Это поле обязательно к заполнению',
 		...rest
 	}: InputProps,
@@ -53,6 +55,7 @@ export const Input = forwardRef<HTMLInputElement | HTMLSelectElement | HTMLTextA
 					ref={ref as ForwardedRef<HTMLInputElement>}
 					className={classnames(type !== 'textarea' ? cls.input : cls.textarea, className, {[cls.error]: isError})}
 					type={inputType}
+					defaultValue={defaultValue ? defaultValue : ''}
 					placeholder={placeholder}
 					{...register(name, {
 						required: isRequired ? errorText : false,

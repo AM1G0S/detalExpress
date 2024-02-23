@@ -1,7 +1,7 @@
 import axios from "axios";
 import classnames from "classnames";
-import {addDoc, collection, serverTimestamp} from "firebase/firestore";
-import {FC, useState} from "react";
+import {addDoc, collection, doc, getDoc, serverTimestamp} from "firebase/firestore";
+import {FC, useEffect, useState} from "react";
 import {SubmitHandler, useForm} from "react-hook-form";
 import {useSelector} from "react-redux";
 import {Link, Navigate} from "react-router-dom";
@@ -15,11 +15,11 @@ import {RootState} from "../../redux/store.ts";
 import cls from "./Application.module.scss"
 
 type Inputs = {
-	mainInput: string | number
-	replacement: string
-	name: string
-	phone: number
-	checkbox: boolean
+	mainInput: string | number;
+	replacement: string;
+	name: string;
+	phone: number;
+	checkbox: boolean;
 }
 
 const Application: FC = () => {
@@ -32,8 +32,25 @@ const Application: FC = () => {
 	const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 	const [isRequestModal, setIsRequestModal] = useState<boolean>(false);
 	const [isRequestStatus, setIsRequestStatus] = useState<'success' | 'error'>('error');
+	const [userData, setUserData] = useState<Inputs | null>(null);
 	
 	const {isAuth} = useAuth();
+	
+	useEffect(() => {
+		const fetchRequests = async () => {
+			// @ts-ignore
+			const docRef = doc(db, "users", userId);
+			const docSnap = await getDoc(docRef);
+			
+			if (docSnap.exists()) {
+				const profileData = docSnap.data() as Inputs;
+				setUserData(profileData);
+			} else {
+				console.log("No such document!");
+			}
+		};
+		fetchRequests().then();
+	}, [userId, db]);
 	
 	const {
 		register,
@@ -87,6 +104,7 @@ const Application: FC = () => {
 		}
 	};
 	
+	// @ts-ignore
 	return isAuth ? (
 		<>
 			<form className={cls.form} onSubmit={handleSubmit(onSubmit)}>
@@ -116,6 +134,7 @@ const Application: FC = () => {
 						errorText={'Введите Имя'}
 						register={register}
 						errors={errors}
+						defaultValue={userData ? userData?.name : null}
 					/>
 					
 					<Input
@@ -126,6 +145,7 @@ const Application: FC = () => {
 						register={register}
 						errors={errors}
 						type={'tel'}
+						defaultValue={userData ? userData?.phone : null}
 					/>
 				</div>
 				
@@ -147,6 +167,7 @@ const Application: FC = () => {
 							error={errors.checkbox?.message}
 							className={cls.checkbox}
 							isRequired={true}
+							isChecked={true}
 						/>
 						<span>
 					Согласен на обработку персональных данных в соответствии с <Link

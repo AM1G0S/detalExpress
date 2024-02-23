@@ -65,7 +65,6 @@ export const ReviewsSlider = () => {
 		slidesToShow: 3,
 		slidesToScroll: 1,
 		initialSlide: 0,
-		speed: 500,
 		arrows: false,
 		adaptiveHeight: true,
 		appendDots: (dots: any) => <ul>{dots}</ul>,

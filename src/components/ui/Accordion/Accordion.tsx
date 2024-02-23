@@ -22,10 +22,10 @@ export const Accordion: FC<AccordionProps> = ({questions}) => {
 		<div className={cls.accordion}>
 			{questions.map((question, index) => (
 				<div key={index} className={cls.item}>
-					<button className={cls.title} onClick={() => handleToggle(index)}>
+					<div className={cls.title} onClick={() => handleToggle(index)}>
 						{question.title}
 						<span className={cls.icon}>{expandedIndex === index ? '-' : '+'}</span>
-					</button>
+					</div>
 					<div className={classnames(cls.description, {[cls.expanded]: expandedIndex === index})}>
 						<p>{question.description}</p>
 					</div>

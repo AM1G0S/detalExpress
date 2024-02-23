@@ -1,10 +1,11 @@
 import classnames from "classnames";
 import {getAuth, signOut} from "firebase/auth";
 import {FC, memo, useEffect, useRef, useState} from "react";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {Link, useNavigate} from "react-router-dom";
 import {useAuth} from "../../../hooks/use-auth.ts";
 import {removeUser} from "../../../redux/slices/userSlice.ts";
+import {RootState} from "../../../redux/store.ts";
 
 import cls from "./Header.module.scss";
 
@@ -14,6 +15,9 @@ import profileIcon from '../../../assets/img/profile.svg'
 export const Header: FC = memo(() => {
 	const [menuActive, setMenuActive] = useState(false);
 	const profileBtn = useRef<HTMLDivElement>(null);
+	
+	const deliveryCity = useSelector((state: RootState) => state.application.delivery);
+	const profileName = useSelector((state: RootState) => state.user.name);
 	
 	useEffect(() => {
 		const handleClickOutside = (event: MouseEvent) => {
@@ -59,6 +63,10 @@ export const Header: FC = memo(() => {
 					isAuth ? (
 						<>
 							<div className={cls.profile} ref={profileBtn}>
+								
+								<span className={cls.profileName}>{profileName}</span>
+								<span className={cls.city}>{deliveryCity}</span>
+								
 								<div className={cls.profileBtn} onClick={() => setMenuActive(!menuActive)}>
 									<img className={cls.icon} src={profileIcon} alt="иконка профиля"/>
 									<svg className={classnames(cls.icon, cls.arrowIcon, menuActive ? cls.show : '')} viewBox="0 0 9 5"
@@ -68,6 +76,7 @@ export const Header: FC = memo(() => {
 										      fill="#2A2A36"></path>
 									</svg>
 								</div>
+								
 								<div className={classnames(cls.profileMenu, menuActive ? cls.show : '')}>
 									<Link to={"/profile#requests"}>Мои запросы</Link>
 									<Link to={"/profile#settings"}>Мои профиль</Link>
@@ -79,6 +88,7 @@ export const Header: FC = memo(() => {
 										})
 									}}>Выход</Link>
 								</div>
+								
 							</div>
 						</>
 					) : (

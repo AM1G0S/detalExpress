@@ -24,7 +24,7 @@ export const Pagination: FC<paginationProps> = ({currentPage}) => {
 		<>
 			<div className={cls.pagination}>
 				<Link className={cls.mainPage} to={'/'}>
-					Гланая&nbsp;/&nbsp;
+					Главная&nbsp;/&nbsp;
 				</Link>
 				<span className={cls.page}>
 				{pageName}

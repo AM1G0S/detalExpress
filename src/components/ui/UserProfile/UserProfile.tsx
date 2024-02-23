@@ -3,8 +3,9 @@ import {useForm} from "react-hook-form";
 import {getAuth, updateEmail, updatePassword, sendEmailVerification} from "firebase/auth";
 import {doc, getDoc, updateDoc} from "firebase/firestore";
 import { FirebaseError } from "firebase/app";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {db} from "../../../firebase";
+import {setUserName} from "../../../redux/slices/userSlice.ts";
 import {RootState} from "../../../redux/store";
 import {StatusModal} from "../../modals/StatusModal/StatusModal";
 import {Button} from "../Button/Button";
@@ -27,6 +28,7 @@ const inputFields = [
 ];
 
 export const UserProfile: FC = memo(() => {
+	const dispatch = useDispatch();
 	const [emailVerified, setEmailVerified] = useState(false);
 	const [isEditing, setIsEditing] = useState(false);
 	const [userData, setUserData] = useState<Inputs | null>(null);
@@ -106,6 +108,7 @@ export const UserProfile: FC = memo(() => {
 			try {
 				await updateDoc(doc(db, "users", userId), updateData);
 				setResponseState(true, "Ваши данные профиля обновлены");
+				dispatch(setUserName({name: data.name}));
 			} catch (error) {
 				setResponseState(false, "Ошибка при обновлении профиля");
 			}

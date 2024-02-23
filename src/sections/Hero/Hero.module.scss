@@ -1,5 +1,5 @@
 .title {
-	font-size: 60px;
+	font-size: 48px;
 	font-weight: 800;
 	line-height: 1.1;
 	margin-bottom: 35px;
@@ -54,5 +54,6 @@
 	
 	@media (max-width: 480px) {
 		right: -246px;
+		display: none;
 	}
 }
