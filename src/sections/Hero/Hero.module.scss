@@ -54,7 +54,11 @@
 	}
 	
 	@media (max-width: 480px) {
-		right: -246px;
 		display: none;
+		height: 0;
+		width: 0;
+		opacity: 0;
+		pointer-events: none;
+		overflow: hidden;
 	}
 }
