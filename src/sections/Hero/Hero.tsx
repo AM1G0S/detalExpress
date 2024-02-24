@@ -14,7 +14,7 @@ export const Hero: FC = memo(() => {
 					<HomeForm></HomeForm>
 				</div>
 				<div className={styles.inner}>
-					<video className={cls.video} autoPlay muted loop>
+					<video className={cls.video} autoPlay muted loop controls={false}>
 						<source src={engineVideo} type="video/mp4"/>
 					</video>
 				</div>

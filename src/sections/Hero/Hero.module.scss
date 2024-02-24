@@ -40,6 +40,7 @@
 	object-fit: cover;
 	z-index: -1;
 	max-width: 960px;
+	touch-action: none;
 	
 	@media (max-width: 991px) {
 		max-width: clamp(21.25rem, -56.016rem + 187.31vw, 60rem); //960 - 340
