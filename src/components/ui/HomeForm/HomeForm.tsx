@@ -2,10 +2,8 @@ import {FC, memo, useEffect, useState} from "react";
 import {SubmitHandler, useForm} from "react-hook-form";
 
 import {useDispatch} from "react-redux";
-import {useAuth} from "../../../hooks/use-auth.ts";
 import {AppDispatch} from "../../../redux/store.ts";
 import {setMainInput} from "../../../redux/slices/applicationSlice";
-import {StatusModal} from "../../modals/StatusModal/StatusModal.tsx";
 
 import {Button} from "../Button/Button";
 import {Input} from "../Input/Input";
@@ -31,10 +29,8 @@ export const HomeForm: FC = memo(() => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch<AppDispatch>();
 	
-	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [activeTab, setActiveTab] = useState<number | null>(0);
 	
-	const {isAuth} = useAuth();
 	
 	const mainInputValue = watch("mainInput");
 	
@@ -47,7 +43,7 @@ export const HomeForm: FC = memo(() => {
 	};
 	
 	const onSubmit: SubmitHandler<Inputs> = () => {
-		isAuth ? navigate('/application') : setIsModalOpen(true);
+		navigate('/application')
 	}
 	
 	return (
@@ -83,11 +79,6 @@ export const HomeForm: FC = memo(() => {
 			
 			</div>
 			
-			<StatusModal status={'error'} title={'Необходимо авторизоваться!'} text={'Войдите в аккаунт, чтобы отправить запрос.'} isOpen={isModalOpen} onClose={() => {
-				setIsModalOpen(false)
-				navigate('/login')
-			}}/>
-		
 		</div>
 	);
 });

@@ -4,12 +4,11 @@ import {addDoc, collection, doc, getDoc, serverTimestamp} from "firebase/firesto
 import {FC, useEffect, useState} from "react";
 import {SubmitHandler, useForm} from "react-hook-form";
 import {useSelector} from "react-redux";
-import {Link, Navigate} from "react-router-dom";
+import {Link} from "react-router-dom";
 import {Checkbox, Input, StatusModal} from "../../components";
 import {DeliveryModal} from "../../components";
 import {Button} from "../../components";
 import {db} from "../../firebase.ts";
-import {useAuth} from "../../hooks/use-auth.ts";
 import {RootState} from "../../redux/store.ts";
 
 import cls from "./Application.module.scss"
@@ -34,7 +33,6 @@ const Application: FC = () => {
 	const [isRequestStatus, setIsRequestStatus] = useState<'success' | 'error'>('error');
 	const [userData, setUserData] = useState<Inputs | null>(null);
 	
-	const {isAuth} = useAuth();
 	
 	useEffect(() => {
 		const fetchRequests = async () => {
@@ -104,8 +102,8 @@ const Application: FC = () => {
 		}
 	};
 	
-	// @ts-ignore
-	return isAuth ? (
+	
+	return (
 		<>
 			<form className={cls.form} onSubmit={handleSubmit(onSubmit)}>
 				<Input
@@ -198,8 +196,6 @@ const Application: FC = () => {
 				onClose={() => setIsRequestModal(false)}
 			/>
 		</>
-	) : (
-		<Navigate to={'/login'}/>
 	)
 }
 

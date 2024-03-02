@@ -86,7 +86,7 @@ export const DeliveryModal: FC<ModalProps> = memo(({isOpen, onClose}) => {
 								<li className={cls.branchesItem} key={index}>
 									<span className={activeAddress === address ? cls.active : ""}>{address}</span>
 									
-									{activeAddress !== address && (
+									{activeAddress !== address ? (
 										<Button
 											variant={"select"}
 											size={"sm"}
@@ -98,7 +98,7 @@ export const DeliveryModal: FC<ModalProps> = memo(({isOpen, onClose}) => {
 										>
 											Выбрать
 										</Button>
-									)}
+									) : <span className={activeAddress === address ? cls.active : ""}>Выбран</span>}
 								</li>
 							))}
 						</ul>

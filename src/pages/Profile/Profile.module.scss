@@ -16,6 +16,10 @@
 	@media (max-width: 660px) {
 		padding-top: 0;
 	}
+	
+	@media (max-width: 480px) {
+		display: none;
+	}
 }
 
 .profileContent {
